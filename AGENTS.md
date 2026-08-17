@@ -25,12 +25,19 @@ miz/                            # this repo (source of the skills)
 ├── probe/                      # learning: build + verify understanding
 ├── book/                       # learning: render a topic as a book
 ├── resume/                     # career: audit/improve/tailor the resume
-├── bin/                        # CLI helpers (miz-topics, miz-status, miz-book)
+├── src/miz/                    # Python package (the pip-installable `miz` CLI)
+│   ├── cli.py                  #   installer + CLI router (install/topics/status/book)
+│   ├── topics.py / status.py   #   miz topics, miz status
+│   └── book.py                 #   miz book
+├── pyproject.toml              # pip packaging (bundles skill dirs via force-include)
 ├── test/                       # test harness (run: bash test/run.sh)
-├── setup                       # installer: symlinks skills into agent dirs
 ├── README.md                   # user-facing documentation
 └── AGENTS.md                   # this file
 ```
+
+Install path: `pip install .` (or `pip install -e .`) then `miz install
+--all`. The CLI lives in `src/miz/cli.py`; it links the skill dirs into the
+agent's skill directory. Do not re-add a bash installer.
 
 Runtime state the skills read/write lives **outside** this repo, under
 `~/.miz/`. Never create or test against state inside the repo. See each
@@ -65,19 +72,20 @@ skill's SKILL.md for the exact files it touches.
   command's behavior lives in `career/agents/*.md`, that agent file is
   authoritative for that subcommand.
 - Adding a new skill? Add the folder + `SKILL.md`, register it in
-  `setup` (the `SKILLS` array), wire it into `home/SKILL.md` routing and
-  both dashboard command lists, then update `test/run.sh`.
+  `src/miz/cli.py` (the `SKILLS` array), wire it into `home/SKILL.md` routing
+  and both dashboard command lists, then update `test/run.sh`.
 - Keep README (what it does) and SKILL.md (how it behaves) in sync with this
   file's structure map.
 
 ## Verification
 
 - Run `bash test/run.sh` after any change. It validates every `SKILL.md`
-  frontmatter, the full skill set, and the bin helpers.
+  frontmatter, the full skill set, and the `miz` CLI.
 - The test harness sets its own `MIZ_HOME` to a temp dir; it never touches
   `~/.miz/`.
-- `setup` is idempotent and prunes stale skill dirs; run
-  `./setup --opencode` after skill changes if you want them live in OpenCode.
+- `miz install` is idempotent and prunes stale skill dirs; run
+  `pip install -e . && miz install --opencode` after skill changes if you
+  want them live in OpenCode.
 
 ## Principles
 

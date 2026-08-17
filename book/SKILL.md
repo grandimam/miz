@@ -45,7 +45,7 @@ the curriculum or mastery.
 Run the assembler:
 
 ```bash
-${MIZ_HOME:-$HOME/.miz}/bin/miz-book "$TOPIC_SLUG" --keep-md
+miz book "$TOPIC_SLUG" --keep-md
 ```
 
 It reads `curriculum.json`, `mastery.json`, `models.json`, `probes.jsonl`,

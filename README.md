@@ -58,16 +58,17 @@ Next step
 ## Quick start
 
 ```bash
-git clone <this repo> && cd miz
-./setup --opencode        # install skills + the /miz command
+pip install miz
+miz install --all     # links the skills into opencode, claude, and codex
+```
 
-/miz career init          # build your profile (2 min)
+That's it. Restart your agent, then:
+
+```bash
+/miz career init      # build your profile (2 min)
 /miz curriculum python    # start learning anything
 /miz probe python 1.1     # build + verify understanding
 ```
-
-> For OpenCode: restart opencode after `./setup` so it picks up the skills
-> and the `/miz` command.
 
 ---
 
@@ -262,40 +263,46 @@ recoverable.
 ├── activity/             # jobs/ + tracker.md
 ├── prep/<company>/       # intel, analysis, stories, sessions
 ├── interview/            # question banks + session history
-├── learning/             # per-skill progress + question banks
-└── bin/                  # CLI helpers
+└── learning/             # per-skill progress + question banks
 ```
 
-CLI helpers (linked into `~/.miz/bin/`):
+The `miz` CLI manages the stack:
 
-- `miz-topics`: list topics
-- `miz-status`: progress + spaced-repetition due status
-- `miz-book`: render a topic as a book
+- `miz install [--opencode|--claude|--codex|--all]` — link skills into your agent
+- `miz topics` — list topics
+- `miz status [topic]` — progress + spaced-repetition due status
+- `miz book <topic>` — render a topic as a book
 
 ---
 
 ## 📦 Install
 
 ```bash
-./setup            # auto-link into Codex/Claude/OpenCode if their skill dirs exist
-./setup --codex    # force-install into ~/.codex/skills
-./setup --opencode # install into ~/.config/opencode/skills + the /miz command
-./setup --all      # install into all detected skill dirs
-./setup --wire     # append a miz section to this repo's AGENTS.md
+pip install miz
+miz install --all
 ```
 
-Installs seven skills: `miz` (the router), `career`, `curriculum`, `learn`,
-`probe`, `book`, `resume`. State lives in `~/.miz/`.
+That's the whole setup. `pip install miz` gives you the `miz` command;
+`miz install` links all seven skills (`miz`, `career`, `curriculum`,
+`learn`, `probe`, `book`, `resume`) into your agent. Default to `--all`, or
+pick just your agent with `--opencode`, `--claude`, or `--codex`.
 
-Use `/miz` as the single entry point. It routes subcommands:
-`/miz career ...`, `/miz curriculum <topic>`, `/miz learn <draft>`,
-`/miz probe <topic> [ch]`, `/miz book <topic>`, `/miz resume [improve|tailor
-<job>]`, or `/miz` alone for the status dashboard.
+Restart your agent after installing, then use `/miz` as the single entry
+point. It routes subcommands: `/miz career ...`, `/miz curriculum <topic>`,
+`/miz learn <draft>`, `/miz probe <topic> [ch]`, `/miz book <topic>`,
+`/miz resume [improve|tailor <job>]`, or `/miz` alone for the status
+dashboard.
+
+**From source (contributing):**
+
+```bash
+git clone <this repo> && cd miz
+pip install -e .
+```
 
 ## ⚙️ Requirements
 
-The core skills need nothing beyond the agent and Python 3 (for the bin
-helpers).
+The core skills need nothing beyond the agent and the `miz` CLI (Python 3).
 
 `/book` also needs `pandoc` and a LaTeX distribution with `xelatex`:
 

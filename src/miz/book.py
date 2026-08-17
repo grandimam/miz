@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-"""Assemble a miz topic into a publication-quality teaching book via pandoc + LaTeX.
+"""miz-book: assemble a miz topic into a publication-quality teaching book via pandoc + LaTeX.
 
 Usage:
   miz-book python                 # build book.pdf + book.tex
@@ -20,7 +19,6 @@ import sys
 
 MIZ_HOME = os.environ.get("MIZ_HOME", os.path.expanduser("~/.miz"))
 HERE = os.path.dirname(os.path.realpath(__file__))
-DEFAULT_TEMPLATE = os.path.normpath(os.path.join(HERE, "..", "book", "template.latex"))
 
 STATUS_LABEL = {
     "not_started": "Not started",
@@ -51,6 +49,21 @@ HEADER_INCLUDES = r"""
 \addtokomafont{disposition}{\rmfamily}
 \subject{\textsc{The Qalam Series}}
 """
+
+
+def default_template():
+    candidates = [
+        os.environ.get("QALAM_BOOK_TEMPLATE"),
+        os.path.normpath(os.path.join(HERE, "skills", "book", "template.latex")),  # package data
+        os.path.normpath(os.path.join(HERE, "..", "..", "book", "template.latex")),  # repo
+    ]
+    for c in candidates:
+        if c and os.path.isfile(c):
+            return c
+    return candidates[1]
+
+
+DEFAULT_TEMPLATE = default_template()
 
 
 def load_json(path):
@@ -345,14 +358,15 @@ def pandoc_latex_fragment(markdown_text):
     return proc.stdout
 
 
-def main():
+def main(argv=None):
+    argv = argv if argv is not None else sys.argv[1:]
     ap = argparse.ArgumentParser(description="Render a miz topic as a LaTeX book.")
     ap.add_argument("slug")
     ap.add_argument("--paper", choices=sorted(GEOMETRY), default="a5")
     ap.add_argument("--tex-only", action="store_true", help="emit book.tex without compiling")
     ap.add_argument("--keep-md", action="store_true", help="keep intermediate markdown")
     ap.add_argument("--engine", default=os.environ.get("QALAM_PDF_ENGINE", "xelatex"))
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
 
     if not shutil.which("pandoc"):
         sys.exit("pandoc is not installed (brew install pandoc)")

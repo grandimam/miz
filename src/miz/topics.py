@@ -1,10 +1,4 @@
-#!/usr/bin/env python3
-"""List miz topics.
-
-Usage:
-  miz-topics            # one slug per line
-  miz-topics --verbose  # slug + progress summary
-"""
+"""miz-topics: list topics under ~/.miz/topics/."""
 import json
 import os
 import sys
@@ -36,8 +30,9 @@ def summarize(slug):
     return {"total": total, "mastered": mastered}
 
 
-def main():
-    verbose = "--verbose" in sys.argv or "-v" in sys.argv
+def main(argv=None):
+    argv = argv if argv is not None else sys.argv[1:]
+    verbose = "--verbose" in argv or "-v" in argv
     slugs = topic_slugs()
     if not slugs:
         print("NO_TOPICS: run the curriculum skill to create one", file=sys.stderr)

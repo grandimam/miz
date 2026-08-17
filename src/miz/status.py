@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-"""Deterministic progress + spaced-repetition status for miz.
+"""miz-status: deterministic progress + spaced-repetition status for topics.
 
 Usage:
   miz-status                 # all topics, human table
@@ -121,8 +120,9 @@ def print_table(reports):
                 print(f"    - {d['chapter']} {d['title']}")
 
 
-def main():
-    args = [a for a in sys.argv[1:]]
+def main(argv=None):
+    argv = argv if argv is not None else sys.argv[1:]
+    args = [a for a in argv]
     as_json = "--json" in args
     due_only = "--due" in args
     args = [a for a in args if not a.startswith("--")]
