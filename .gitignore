@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Editors
+.vscode/
+.idea/
+
+# Tool config / local hooks
+.codex/
+.opencode/
+.agents/
+.claude/
+
+# LaTeX build artifacts
+book/*.pdf
+book/*.tex
+
+# Local state (never commit user data)
+.miz/

@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+# miz tests — no external deps beyond python3 (for yaml) and the tools themselves.
+set -e
+FAIL=0
+ok() { echo "  ok: $1"; }
+bad() { echo "FAIL: $1"; FAIL=1; }
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+export MIZ_HOME="$(mktemp -d)"
+echo "MIZ_HOME=$MIZ_HOME"
+
+echo "1. all SKILL.md frontmatter is valid YAML and name matches expected skill name"
+expect_name() {
+  case "$1" in
+    home) echo miz ;;
+    career) echo career ;;
+    curriculum) echo curriculum ;;
+    learn) echo learn ;;
+    probe) echo probe ;;
+    book) echo book ;;
+    resume) echo resume ;;
+  esac
+}
+for f in "$ROOT"/*/SKILL.md; do
+  dir="$(basename "$(dirname "$f")")"
+  want="$(expect_name "$dir")"
+  if [ -z "$want" ]; then bad "$f: unexpected skill folder"; continue; fi
+  out=$(python3 - "$f" "$want" <<'PY'
+import yaml, sys, glob
+content = open(sys.argv[1]).read()
+parts = content.split("---", 2)
+if len(parts) < 3: sys.exit("no frontmatter")
+fm = yaml.safe_load(parts[1])
+if "name" not in fm: sys.exit("no name")
+if "description" not in fm: sys.exit("no description")
+if fm["name"] != sys.argv[2]: sys.exit(f"name {fm['name']!r} != expected {sys.argv[2]!r}")
+PY
+  ) || bad "$f: $out" && ok "$dir"
+done
+
+echo "2. skills list is complete"
+expected="book career curriculum learn miz probe resume"
+got=$(grep -h '^name:' "$ROOT"/*/SKILL.md | awk '{print $2}' | sort | tr '\n' ' ')
+[ "$got" = "$expected " ] && ok "7 skills present" || bad "skill set mismatch: got [$got]"
+
+echo "3. fixtures + bin helpers"
+MIZ_HOME="$MIZ_HOME" "$ROOT/test/make_fixture.sh" python >/dev/null
+count=$(MIZ_HOME="$MIZ_HOME" "$ROOT/bin/miz-topics" | grep -c python)
+[ "$count" = "1" ] && ok "miz-topics lists python" || bad "miz-topics"
+
+progress=$(MIZ_HOME="$MIZ_HOME" "$ROOT/bin/miz-status" python 2>/dev/null | grep -o '[0-9.]*%')
+[ -n "$progress" ] && ok "miz-status shows progress ($progress)" || bad "miz-status no progress"
+
+echo "4. missing topic is a clean error"
+if MIZ_HOME="$MIZ_HOME" "$ROOT/bin/miz-status" nope >/tmp/qs.out 2>&1; [ $? -eq 1 ]; then ok "exit 1 for missing topic"; else bad "status missing topic"; fi
+
+echo "5. book renders to tex without a pdf engine needed (--tex-only)"
+MIZ_HOME="$MIZ_HOME" "$ROOT/bin/miz-book" python --tex-only >/tmp/qb.out 2>&1
+book="$MIZ_HOME/topics/python/book/book.tex"
+[ -f "$book" ] && ok "book.tex produced ($book)" || { bad "no book.tex"; cat /tmp/qb.out; }
+grep -q 'Tier 1' "$book" && ok "book.tex contains Tier 1" || bad "book.tex missing Tier 1"
+
+echo
+if [ "$FAIL" = "1" ]; then echo "RESULT: FAIL"; exit 1; fi
+echo "RESULT: all tests passed"

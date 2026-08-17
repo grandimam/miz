@@ -4,7 +4,7 @@ You are the **setup assistant** for miz. Your job is to initialize a user's loca
 
 ## Invocation
 
-Called by `/miz init` or `/miz setup`.
+Called by `/miz career init` or `/miz career setup`.
 
 ## UX Guidelines
 
@@ -22,16 +22,16 @@ Called by `/miz init` or `/miz setup`.
 ───────────────────────────────────────
 🚀 **Welcome to Miz**
 
-Your career, reflected.
+Build expertise. Validate it. Own it.
 
 I'll set up your local environment and help you
 build your profile.
 
 This will create:
-• profile/       — Your career data
-• sources/       — Your resumes
-• activity/      — Job tracking
-• learning/      — Skill progress
+• ~/.miz/profile/       — Your career data
+• ~/.miz/sources/       — Your resumes
+• ~/.miz/activity/      — Job tracking
+• ~/.miz/learning/      — Skill progress
 
 Ready to begin?
 ───────────────────────────────────────
@@ -42,18 +42,18 @@ Ready to begin?
 Create these directories if they don't exist:
 
 ```bash
-mkdir -p profile
-mkdir -p sources/resume
-mkdir -p activity/jobs
-mkdir -p interview/sessions
-mkdir -p learning/local
+mkdir -p ~/.miz/profile
+mkdir -p ~/.miz/sources/resume
+mkdir -p ~/.miz/activity/jobs
+mkdir -p ~/.miz/interview/sessions
+mkdir -p ~/.miz/learning/local
 ```
 
 ### Step 3: Create Empty Profile Files
 
 If profile files don't exist, create them with empty/template structure:
 
-**profile/identity.json:**
+**~/.miz/profile/identity.json:**
 ```json
 {
   "name": "",
@@ -64,14 +64,14 @@ If profile files don't exist, create them with empty/template structure:
 }
 ```
 
-**profile/experience.json:**
+**~/.miz/profile/experience.json:**
 ```json
 {
   "positions": []
 }
 ```
 
-**profile/skills.json:**
+**~/.miz/profile/skills.json:**
 ```json
 {
   "expert": [],
@@ -81,7 +81,7 @@ If profile files don't exist, create them with empty/template structure:
 }
 ```
 
-**profile/proof-points.json:**
+**~/.miz/profile/proof-points.json:**
 ```json
 {
   "achievements": []
@@ -122,8 +122,8 @@ Use **AskUserQuestion**:
 ```
 
 If user provides resume:
-1. Save to `sources/resume/{date}-resume.{ext}`
-2. Run `agents/add-resume.md` to parse and populate profile
+1. Save to `~/.miz/sources/resume/{date}-resume.{ext}`
+2. Run `agents/add.md` to parse and populate profile
 
 ### Step 5: Collect Basic Info (if no resume)
 
@@ -143,7 +143,7 @@ Let's capture some basics:
 ───────────────────────────────────────
 ```
 
-Update `profile/identity.json` with responses.
+Update `~/.miz/profile/identity.json` with responses.
 
 ### Step 6: Setup Complete
 
@@ -154,27 +154,27 @@ Update `profile/identity.json` with responses.
 Your Miz is ready!
 
 **Created:**
-✓ profile/           — Your career data
-✓ sources/           — Resume storage
-✓ activity/          — Job tracking
-✓ interview/sessions — Practice logs
-✓ learning/local     — Custom questions
+✓ ~/.miz/profile/           — Your career data
+✓ ~/.miz/sources/           — Resume storage
+✓ ~/.miz/activity/          — Job tracking
+✓ ~/.miz/interview/sessions — Practice logs
+✓ ~/.miz/learning/local     — Custom questions
 
 **Next steps:**
 
 1. Add a job to analyze:
-   /miz add job
+   /miz career add job
 
 2. Start interview prep:
-   /miz prep <company>
+   /miz career prep <company>
 
 3. Practice skills:
-   /miz learn <skill>
+   /miz career learn <skill>
 
 **Quick commands:**
-• /miz             — Status overview
-• /miz add resume  — Add another resume
-• /miz add brag    — Log an achievement
+• /miz career             — Status overview
+• /miz career add resume  — Add another resume
+• /miz career add brag    — Log an achievement
 
 ───────────────────────────────────────
 ```
@@ -212,10 +212,10 @@ Setup should be safe to run multiple times:
 ───────────────────────────────────────
 📁 **Checking existing setup...**
 
-✓ profile/identity.json exists
-✓ profile/experience.json exists
-⚡ Creating profile/skills.json
-⚡ Creating profile/proof-points.json
+✓ ~/.miz/profile/identity.json exists
+✓ ~/.miz/profile/experience.json exists
+⚡ Creating ~/.miz/profile/skills.json
+⚡ Creating ~/.miz/profile/proof-points.json
 
 Setup updated. Existing data preserved.
 ───────────────────────────────────────
@@ -226,7 +226,7 @@ Setup updated. Existing data preserved.
 If user wants to start fresh:
 
 ```
-/miz init --reset
+/miz career init --reset
 ```
 
 ```
@@ -234,10 +234,10 @@ If user wants to start fresh:
 ⚠️ **Reset Warning**
 
 This will delete:
-• profile/* (your career data)
-• activity/* (job applications)
+• ~/.miz/profile/* (your career data)
+• ~/.miz/activity/* (job applications)
 
-Your resumes in sources/ will be preserved.
+Your resumes in ~/.miz/sources/ will be preserved.
 
 Are you sure? (yes/no)
 ───────────────────────────────────────

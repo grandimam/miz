@@ -1,6 +1,21 @@
-# Miz
+---
+name: career
+description: |
+  The career layer of miz: profile building, honest job-fit analysis,
+  company-modeled interview prep, gap closing, and application tracking.
+  All state lives under ~/.miz/. Use /miz career init to set up, /miz career add
+  <type> to add data, /miz career prep <company> for intel, /miz career analyze
+  <company> for fit, /miz career learn <company> to close gaps, and /miz career
+  tracker to track applications.
+---
 
-Your career, reflected.
+# Career
+
+Your career, reflected honestly.
+
+This skill is the career layer of the miz stack: profile, honest fit analysis,
+company-modeled interview prep, gap closing, and tracking. All state lives
+under `~/.miz/`.
 
 ## UX Guidelines
 
@@ -13,132 +28,71 @@ Always use rich formatting for a polished terminal experience:
 
 ## Commands
 
-On EVERY invocation, first check if `profile/identity.json` exists.
+### `/miz career` (no args)
 
-If file does not exist, show welcome:
+Show a brief career overview: profile stats, job pipeline, prep companies,
+tracker summary. Point to next actions.
 
-```
-╭─────────────────────────────────────╮
-│  miz                         │
-│  Your career, reflected.            │
-╰─────────────────────────────────────╯
+### `/miz career init`
 
-Welcome! I don't have your profile yet.
-
-→ Run `/miz init` to get started
-```
-
-### Available Commands
-
-#### `/miz` (no args)
-
-Show current status:
-1. Check if `profile/identity.json` exists
-2. If NO → show welcome message above
-3. If YES → read profile files and show rich status dashboard:
-
-```
-╭─────────────────────────────────────╮
-│  miz · {Name}                │
-╰─────────────────────────────────────╯
-
-**{Current Role}** at {Company}
-{Location}
-
-───────────────────────────────────────
-📊 **Profile**
-
-• Experience: {X} years across {Y} companies
-• Skills: {top 3 expert skills}
-• Proof points: {count}
-• Sources: {count} files
-
-───────────────────────────────────────
-🎯 **Job Pipeline**
-
-• {count} jobs tracked
-• {count} with fit analysis
-
-───────────────────────────────────────
-🎤 **Interview Prep**
-
-• {count} companies researched
-• {count} practice sessions
-
-───────────────────────────────────────
-📚 **Learning**
-
-• {count} skills tracked
-• {count} topics due for review
-
-───────────────────────────────────────
-**Quick actions**
-
-→ `/miz add job` — Analyze a job
-→ `/miz prep <company>` — Practice interviews
-→ `/miz learn` — Improve your skills
-→ `/miz tracker` — View applications
-```
-
-#### `/miz init`
-
-First-time setup. Creates directories, initializes profile files, guides user through adding resume.
+First-time setup. Creates `~/.miz/` directories, initializes profile files,
+guides user through adding resume.
 
 Read `agents/setup.md` and follow its instructions.
 
-#### `/miz status`
+### `/miz career status`
 
-Same as `/miz` with no args.
+Show a brief career overview (same as `/miz career` with no args).
 
 ---
 
 ### Add Commands
 
-All `/miz add` commands process immediately.
+All `/miz career add` commands process immediately.
 
-#### `/miz add resume`
+#### `/miz career add resume`
 
 Add a resume and merge into profile.
 
-Read `agents/add-resume.md` and follow its instructions.
+Read `agents/add.md` and follow its instructions.
 
-#### `/miz add job [url]`
+#### `/miz career add job [url]`
 
 Add a job description, analyze fit, derive positioning, research company.
 
 - If URL provided → fetch and analyze automatically
 - If no URL → prompt for URL or paste JD text
 
-Read `agents/add-job.md` and follow its instructions.
+Read `agents/add.md` and follow its instructions.
 
-#### `/miz add brag`
+#### `/miz career add brag`
 
 Capture a professional achievement.
 
-Read `agents/add-brag.md` and follow its instructions.
+Read `agents/add.md` and follow its instructions.
 
-#### `/miz add doc`
+#### `/miz career add doc`
 
 Add a tech spec, RFC, design doc, or work sample.
 
-Read `agents/add-doc.md` and follow its instructions.
+Read `agents/add.md` and follow its instructions.
 
 ---
 
 ### Tracker Commands
 
-#### `/miz tracker`
+#### `/miz career tracker`
 
 View and update the applications tracker.
 
 Read `agents/tracker.md` and follow its instructions.
 
 **Subcommands:**
-- `/miz tracker` — Show tracker table
-- `/miz tracker update <job-id> --status <status>` — Update job status
-- `/miz tracker update <job-id> --stage <stage>` — Update interview stage
-- `/miz tracker update <job-id> --outcome <outcome>` — Update stage outcome
-- `/miz tracker note <job-id> <note>` — Update notes
+- `/miz career tracker` — Show tracker table
+- `/miz career tracker update <job-id> --status <status>` — Update job status
+- `/miz career tracker update <job-id> --stage <stage>` — Update interview stage
+- `/miz career tracker update <job-id> --outcome <outcome>` — Update stage outcome
+- `/miz career tracker note <job-id> <note>` — Update notes
 
 **Statuses:** `saved`, `applied`, `interviewing`, `offered`, `accepted`, `rejected`, `withdrawn`
 
@@ -150,7 +104,7 @@ Read `agents/tracker.md` and follow its instructions.
 
 ### Interview Prep Commands
 
-#### `/miz prep <company>`
+#### `/miz career prep <company>`
 
 Start interview prep for a company. Shows menu to pick interview type.
 
@@ -172,11 +126,11 @@ Available companies (from jobs in pipeline):
 Which company? Enter the name:
 ```
 
-#### `/miz prep <company> behavioral`
+#### `/miz career prep <company> behavioral`
 
 Behavioral interview practice.
 
-Read `agents/behavioral.md` and follow its instructions.
+Read `agents/learn.md` and follow its instructions.
 
 Features:
 - Questions aligned with company values
@@ -184,11 +138,11 @@ Features:
 - STAR format coaching
 - Feedback from company's perspective
 
-#### `/miz prep <company> coding`
+#### `/miz career prep <company> coding`
 
 Coding interview practice.
 
-Read `agents/coding.md` and follow its instructions.
+Read `agents/learn.md` and follow its instructions.
 
 Features:
 - Questions from company's known patterns
@@ -196,11 +150,11 @@ Features:
 - Hints and walkthroughs
 - Complexity analysis
 
-#### `/miz prep <company> system-design`
+#### `/miz career prep <company> system-design`
 
 System design interview practice.
 
-Read `agents/system-design.md` and follow its instructions.
+Read `agents/learn.md` and follow its instructions.
 
 Features:
 - Problems relevant to company domain
@@ -212,7 +166,7 @@ Features:
 
 ### Learning Commands
 
-#### `/miz learn`
+#### `/miz career learn`
 
 Show skills dashboard with progress across all skills.
 
@@ -235,7 +189,7 @@ Read `agents/learn.md` and follow its instructions.
 ───────────────────────────────────────
 ```
 
-#### `/miz learn <skill>`
+#### `/miz career learn <skill>`
 
 Practice a specific skill.
 
@@ -247,13 +201,13 @@ Features:
 - Spaced repetition scheduling
 - Identify and drill weak areas
 
-#### `/miz learn <skill> --topic <topic>`
+#### `/miz career learn <skill> --topic <topic>`
 
 Focus on a specific topic within a skill.
 
-Example: `/miz learn python --topic concurrency`
+Example: `/miz career learn python --topic concurrency`
 
-#### `/miz learn <skill> --review`
+#### `/miz career learn <skill> --review`
 
 Review topics due for spaced repetition.
 
@@ -262,7 +216,7 @@ Prioritizes:
 2. Low confidence topics
 3. Low score topics
 
-#### `/miz learn <skill> --assess`
+#### `/miz career learn <skill> --assess`
 
 Run a full assessment to establish baseline for a skill.
 
@@ -270,7 +224,7 @@ Run a full assessment to establish baseline for a skill.
 - Mix of difficulty levels
 - Creates initial progress profile
 
-#### `/miz progress`
+#### `/miz career progress`
 
 Show overall learning progress across all skills.
 
@@ -295,11 +249,11 @@ Weak: databases, caching
 
 ### Fetch Commands
 
-#### `/miz fetch leetcode`
+#### `/miz career fetch leetcode`
 
 Fetch LeetCode company-tagged questions from community GitHub repos.
 
-Read `agents/fetch.md` and follow its instructions.
+Read `agents/add.md` and follow its instructions.
 
 ```
 ───────────────────────────────────────
@@ -311,18 +265,18 @@ Read `agents/fetch.md` and follow its instructions.
 | google | 892 | 892 |
 | meta | 756 | 756 |
 
-Saved to: learning/community/leetcode/
+Saved to: ~/.miz/learning/community/leetcode/
 
 ───────────────────────────────────────
 ```
 
-#### `/miz fetch leetcode --company <name>`
+#### `/miz career fetch leetcode --company <name>`
 
 Fetch questions for a specific company only.
 
-Example: `/miz fetch leetcode --company stripe`
+Example: `/miz career fetch leetcode --company stripe`
 
-#### `/miz fetch leetcode --list`
+#### `/miz career fetch leetcode --list`
 
 List all available companies in the source.
 
@@ -330,13 +284,13 @@ List all available companies in the source.
 
 ### Case Commands
 
-#### `/miz case <job-id>`
+#### `/miz career case <job-id>`
 
 Build the strongest case for a job you want to apply to.
 
-**Prerequisites:** Job must exist in `activity/jobs/` with fit analysis completed.
+**Prerequisites:** Job must exist in `~/.miz/activity/jobs/` with fit analysis completed.
 
-Read `agents/case-agent.md` and follow its instructions.
+Read `agents/analyze.md` and follow its instructions.
 
 If no job-id provided, list available jobs:
 ```
@@ -355,18 +309,18 @@ Which job? Enter the ID:
 ## Data Model
 
 ```
-profile/                      # MASTER PROFILE
+~/.miz/profile/                      # MASTER PROFILE
 ├── identity.json
 ├── experience.json
 ├── education.json
 ├── skills.json
 └── proof-points.json
 
-activity/
+~/.miz/activity/
 ├── tracker.md                # Applications tracker
 └── jobs/*.json               # Analyzed jobs
 
-interview/
+~/.miz/interview/
 ├── banks/                    # Generic question banks
 │   ├── behavioral.json
 │   ├── coding/
@@ -375,7 +329,7 @@ interview/
 └── sessions/                 # Practice history
     └── {company}-{date}-{type}.json
 
-learning/
+~/.miz/learning/
 ├── progress.json             # Overall progress
 ├── banks/                    # Question banks by skill
 │   ├── python/
@@ -385,7 +339,7 @@ learning/
     ├── progress.json
     └── sessions/
 
-sources/
+~/.miz/sources/
 └── resume/                   # User's resumes
 ```
 
@@ -394,19 +348,19 @@ sources/
 | Command | Agent | Purpose |
 |---------|-------|---------|
 | `init` | `agents/setup.md` | Setup local environment |
-| `add resume` | `agents/add-resume.md` | Parse resume → merge |
-| `add job` | `agents/add-job.md` | Parse JD + company research + fit |
-| `add brag` | `agents/add-brag.md` | Capture achievement |
-| `add doc` | `agents/add-doc.md` | Extract proof points |
-| `add question` | `agents/add-question.md` | Add interview question |
+| `add resume` | `agents/add.md` | Parse resume → merge |
+| `add job` | `agents/add.md` | Parse JD + company research + fit |
+| `add brag` | `agents/add.md` | Capture achievement |
+| `add doc` | `agents/add.md` | Extract proof points |
+| `add question` | `agents/add.md` | Add interview question |
 | `tracker` | `agents/tracker.md` | View/update tracker |
-| `case` | `agents/case-agent.md` | Build advocacy case |
+| `case` | `agents/analyze.md` | Build advocacy case |
 | `prep` | `agents/prep.md` | Interview prep menu |
-| `prep <company> behavioral` | `agents/behavioral.md` | Behavioral practice |
-| `prep <company> coding` | `agents/coding.md` | Coding practice |
-| `prep <company> system-design` | `agents/system-design.md` | System design practice |
-| `prep <company> mock` | `agents/mock-interview.md` | Full mock interview |
+| `prep <company> behavioral` | `agents/learn.md` | Behavioral practice |
+| `prep <company> coding` | `agents/learn.md` | Coding practice |
+| `prep <company> system-design` | `agents/learn.md` | System design practice |
+| `prep <company> mock` | `agents/learn.md` | Full mock interview |
 | `learn` | `agents/learn.md` | Skills dashboard |
 | `learn <skill>` | `agents/learn.md` | Practice skill |
 | `progress` | `agents/learn.md` | Overall progress |
-| `fetch leetcode` | `agents/fetch.md` | Fetch company questions |
+| `fetch leetcode` | `agents/add.md` | Fetch company questions |

@@ -4,7 +4,7 @@ You are the **tracker agent** for miz. Your job is to show and update the applic
 
 ## Invocation
 
-Called by `/miz tracker [action] [job-id] [options]`.
+Called by `/miz career tracker [action] [job-id] [options]`.
 
 ## UX Guidelines
 
@@ -16,11 +16,11 @@ Called by `/miz tracker [action] [job-id] [options]`.
 
 ## Commands
 
-### `/miz tracker` (no args)
+### `/miz career tracker` (no args)
 
 Show the current tracker:
 
-1. Read `activity/tracker.md`
+1. Read `~/.miz/activity/tracker.md`
 2. Display the table with summary
 
 ```
@@ -39,16 +39,16 @@ Show the current tracker:
 ───────────────────────────────────────
 **Quick actions**
 
-→ `/miz tracker update <job-id> --status applied`
-→ `/miz tracker update <job-id> --stage coding`
-→ `/miz tracker update <job-id> --outcome passed`
+→ `/miz career tracker update <job-id> --status applied`
+→ `/miz career tracker update <job-id> --stage coding`
+→ `/miz career tracker update <job-id> --outcome passed`
 ```
 
-### `/miz tracker update <job-id> --status <status>`
+### `/miz career tracker update <job-id> --status <status>`
 
 Update a job's status:
 
-1. Read `activity/tracker.md`
+1. Read `~/.miz/activity/tracker.md`
 2. Find the row matching job-id (company-role pattern)
 3. Update the status
 4. If status is `applied`, set Applied date to today
@@ -66,7 +66,7 @@ Update a job's status:
 
 **Example:**
 ```
-/miz tracker update stripe-staff-backend --status interviewing
+/miz career tracker update stripe-staff-backend --status interviewing
 ```
 
 Output:
@@ -93,7 +93,7 @@ Use **AskUserQuestion**:
 }
 ```
 
-### `/miz tracker update <job-id> --stage <stage>`
+### `/miz career tracker update <job-id> --stage <stage>`
 
 Update the interview stage:
 
@@ -107,7 +107,7 @@ Update the interview stage:
 
 **Example:**
 ```
-/miz tracker update stripe-staff-backend --stage system-design
+/miz career tracker update stripe-staff-backend --stage system-design
 ```
 
 Output:
@@ -115,10 +115,10 @@ Output:
 ✓ Updated stripe-staff-backend → stage: system-design
 
 Tip: After the interview, update the outcome:
-→ `/miz tracker update stripe-staff-backend --outcome passed`
+→ `/miz career tracker update stripe-staff-backend --outcome passed`
 ```
 
-### `/miz tracker update <job-id> --outcome <outcome>`
+### `/miz career tracker update <job-id> --outcome <outcome>`
 
 Update the outcome of the current stage:
 
@@ -129,7 +129,7 @@ Update the outcome of the current stage:
 
 **Example:**
 ```
-/miz tracker update stripe-staff-backend --outcome passed
+/miz career tracker update stripe-staff-backend --outcome passed
 ```
 
 Output:
@@ -167,12 +167,12 @@ If outcome is `failed`, auto-update status to `rejected`:
 What went wrong in this round? Recording this helps future prep.
 ```
 
-### `/miz tracker note <job-id> <note>`
+### `/miz career tracker note <job-id> <note>`
 
 Update the "Notes" column:
 
 ```
-/miz tracker note stripe-staff-backend "System design round scheduled for Monday 2pm"
+/miz career tracker note stripe-staff-backend "System design round scheduled for Monday 2pm"
 ```
 
 Output:
@@ -182,9 +182,9 @@ Output:
 
 ## Auto-Update Integration
 
-When a job is added via `/miz add job`:
-1. After saving to `activity/jobs/{id}.json`
-2. Add a row to `activity/tracker.md`
+When a job is added via `/miz career add job`:
+1. After saving to `~/.miz/activity/jobs/{id}.json`
+2. Add a row to `~/.miz/activity/tracker.md`
 3. Default values:
    - Status: `saved`
    - Stage: `-`
@@ -243,7 +243,7 @@ When showing tracker, also show insights:
 
 • Pass rate: 2/3 (67%)
 • Most failed stage: coding (2 rejections)
-• Tip: Run `/miz prep <company> coding` to practice
+• Tip: Run `/miz career prep <company> coding` to practice
 ```
 
 ## Notes

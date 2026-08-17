@@ -1,32 +1,99 @@
 # Miz
 
-> Stop applying to jobs you won't get.
+> Build expertise. Validate it. Own it.
 
-You've applied to 50 jobs. Heard back from 3. Bombed an interview because you blanked on a behavioral question you should've nailed.
-
-**The problem isn't your experience. It's that you don't know yourself well enough and every tool out there lies to you.**
-
-Miz tells you the truth. It knows your experience better than you do. It tells you which jobs you'll actually get (and which ones you won't). And when you blank in an interview, it reminds you: "Remember that time you reduced latency by 40x? Use that."
+Miz is two layers that feed each other. The **learning engine** turns an AI
+coding agent into a learning partner that takes you from shaky first intuition
+to durable, owned mastery of any topic. The **career layer** applies that
+expertise to the job market — honest fit analysis, company-modeled interview
+prep, gap closing, and tracking.
 
 All local. All private. All yours.
 
-## The Problem
+```
+LEARNING ENGINE (any topic)          CAREER LAYER (job hunting)
+─────────────────────────────        ─────────────────────────────
+curriculum → learn                   /miz career: init → add → prep → analyze
+     ↓        ↓                     → learn → tracker
+probe (build + verify)               (fit, gaps, mocks, outcomes)
+     ↓
+book (publish)
+```
 
-**Job hunting is broken:**
+`/miz` is the single command: it routes subcommands to the other skills.
 
-- You apply to jobs you're not qualified for (wasting everyone's time)
-- You skip jobs you'd be perfect for (because the JD sounds intimidating)
-- You prep with generic interview questions (that don't match how the company actually interviews)
-- You forget your own accomplishments (and undersell yourself)
-- You cram before interviews, forget everything, repeat
+---
 
-**Every career tool tells you what you want to hear. Miz tells you the truth.**
+## The learning engine
 
-## What Makes It Different
+Most learning tooling evaluates you (quizzes) or dumps content at you
+(courses). Miz does the part in between: it helps you *construct* the picture
+in your head, layer by layer, then tests whether that picture actually holds
+up, drills the cracks it finds, and resurfaces the knowledge before it fades.
+You build it. The agent holds the structure.
 
-### 1. Brutal Honesty First
+```
+curriculum   design the path: definitive guide architecture, book parts, chapters
+   |  (writes README.md + curriculum.json + mastery.json)
+   v
+learn        review chapter drafts from the learner's perspective
+   |
+   v
+probe        surface your picture, test it, repair cracks inline
+   |  (writes probes.jsonl; updates mastery.json with revisit metadata)
+   |  if not mastered -> probe again on the same chapter
+   v
+book         render the topic as a publication-quality teaching book
+```
 
-Most tools validate you. Miz confronts you.
+The loop is the same no matter the topic: a language, a framework, a subfield,
+a craft. Skills do not exist in isolation — each writes an artifact to
+`~/.miz/` that the next one reads, so the work compounds across sessions.
+
+### Learning commands
+
+| Command | Role | Reads | Writes |
+|---------|------|-------|--------|
+| `/miz curriculum <topic>` | Designer | nothing (the seed) | `README.md`, `curriculum.json`, `mastery.json` |
+| `/miz learn <draft>` | Learner-side reviewer | draft chapter, sequence context | usually no durable artifact by default |
+| `/miz probe <topic> [ch]` | Examiner-coach | `curriculum.json`, `mastery.json`, prior `models.json`, recent `probes.jsonl` | `probes.jsonl`, `mastery.json`, optional `models.json`, `models.jsonl`, `practice.jsonl` |
+| `/miz book <topic>` | Publisher | `curriculum.json`, `mastery.json`, `models.json`, `*.jsonl` | `book/book.pdf`, `book/book.tex` |
+
+`/miz probe` forces you to state your picture, tests it, and runs tight repairs
+inline before deciding whether the chapter is mastered. Mastered chapters get
+spaced-repetition revisit metadata (3 → 10 → 30 → 90 days) so knowledge
+doesn't quietly rot.
+
+```
+/miz curriculum python
+/miz probe python 1.2
+/miz book python
+```
+
+### Make a book
+
+Once a topic has accumulated work, `/book` renders it as a
+publication-quality LaTeX teaching book (KOMA `scrbook` via XeLaTeX with
+microtype, real TOC, auto-detected fonts). It's built from the curriculum plus
+the refinements found during probing — pitfalls, weak distinctions, and drills
+worth teaching explicitly. A study guide, not a session transcript.
+
+```
+/miz book python              # -> ~/.miz/topics/python/book/book.pdf
+/miz book python --paper a4   # a5 (book size, default), a4, or letter
+/miz book python --tex-only   # stop at book.tex to hand-tune the LaTeX
+```
+
+---
+
+## The career layer
+
+Job hunting is broken: you apply to jobs you're not qualified for, skip jobs
+you'd be perfect for, prep with generic questions, forget your own
+accomplishments, and cram before interviews. Every career tool tells you what
+you want to hear. Miz tells you the truth.
+
+### 1. Brutal honesty first
 
 ```
 Fit Score: 65%
@@ -41,234 +108,125 @@ Fit Score: 65%
 🚨 Deal-Breaker: Banking domain is marked MANDATORY. You don't have it.
 
 Verdict: Strong technical fit, but don't apply unless you can bridge
-the banking gap. You'll waste their time and yours.
+the banking gap.
 ```
 
-Stop spray-and-praying. Know your fit before you apply.
+### 2. Practice the way that company asks
+
+When you add a job, Miz researches the company — careers page, engineering
+blog, Glassdoor — and builds an intel file. Then it asks you questions *the
+way they would ask them*, mapped to their actual values and process.
+
+### 3. Answers from YOUR experience
+
+You blank on behavioral questions because you forget your own
+accomplishments. Miz doesn't. When you say "help," it searches your profile
+and suggests an answer from your actual experience — your stories, your
+numbers, their framing.
+
+### 4. Skills that actually stick
+
+Spaced repetition (SM-2). Weak topics come back. Mastered topics fade away.
+No more cramming, forget, repeat.
+
+### Career commands
+
+| Command | What it does |
+|---------|--------------|
+| `/miz` | Status dashboard + router |
+| `/miz career` | Career overview |
+| `/miz career init` | First-time setup |
+| `/miz career add job` | Analyze a job posting (honest) |
+| `/miz career add resume` | Add another resume |
+| `/miz career add brag` | Capture an achievement |
+| `/miz career prep <company>` | Research company + interview prep menu |
+| `/miz career analyze <company>` | Fit score + gaps + positioning |
+| `/miz career learn <company>` | Close gaps + mock interviews (continuous loop) |
+| `/miz career tracker` | View/update applications |
+| `/miz resume` | Audit the resume against the profile |
+| `/miz resume improve` | Rewrite weak bullets with metrics + keywords |
+| `/miz resume tailor <job>` | Tailor the resume to a specific job |
+
+The learn phase is a continuous loop: work on gaps → checkpoint mock →
+exposed? → fix → full mock → ready. If a mock exposes a weakness, the gap
+reopens.
 
 ---
 
-### 2. Practice The Way That Company Asks
+## State
 
-Generic prep is lazy:
-
-> "Tell me about a time you showed leadership."
-
-That's not how real companies interview. Each has their own values, their own style, their own signals they look for.
-
-When you add a job, Miz researches the company—scrapes their careers page, engineering blog, Glassdoor reviews—and builds an intel file. Then it asks you questions _the way they would ask them_:
+Everything lives under `~/.miz/`, one folder per topic plus the career
+folders. Current state is JSON; history is append-only JSONL. Nothing is ever
+deleted, so the full arc of your learning and job hunting is recoverable.
 
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│  INTERVIEWER (based on company research)                         │
-│                                                                  │
-│  "Your target company values 'ownership'—seeing things through  │
-│   from start to finish. Tell me about a time you took full      │
-│   ownership of a project, including the parts outside your      │
-│   comfort zone."                                                 │
-└──────────────────────────────────────────────────────────────────┘
+~/.miz/
+├── topics/<slug>/        # learning (curriculum.json, mastery.json, probes, book/)
+├── profile/              # career (identity, experience, skills, proof-points)
+├── sources/              # raw resumes + work samples
+├── activity/             # jobs/ + tracker.md
+├── prep/<company>/       # intel, analysis, stories, sessions
+├── interview/            # question banks + session history
+├── learning/             # per-skill progress + question banks
+└── bin/                  # CLI helpers
 ```
 
-Practice like it's the real thing. Because it basically is.
+CLI helpers (linked into `~/.miz/bin/`):
 
----
+- `miz-topics` — list topics
+- `miz-status` — progress + spaced-repetition due status
+- `miz-book` — render a topic as a book
 
-### 3. Answers From YOUR Experience
-
-You blank on behavioral questions because you forget your own accomplishments.
-
-Miz doesn't. When you say "help," it searches your profile and suggests an answer from your actual experience:
-
-```
-📌 Suggested proof point from your profile:
-
-"Redesigned data pipeline, reducing P95 latency from 200ms to 5ms"
-
-STAR Format:
-
-• Situation: The platform was hitting latency issues at scale.
-             The team was okay with 200ms P95.
-
-• Task: Maintain SLAs while traffic grew 10x.
-
-• Action: Pushed back. Redesigned with batching + caching.
-          Refused to accept 200ms when 5ms was achievable.
-
-• Result: P95 dropped to 5ms. Zero incidents in 6 months.
-
-Company Angle (based on their values):
-"I wasn't satisfied with 'good enough.' That aligns with your
-target company's focus on engineering excellence."
-```
-
-Your stories. Your numbers. Their framing.
-
----
-
-### 4. Skills That Actually Stick
-
-You cram before interviews. Forget everything after. Repeat.
-
-Miz uses spaced repetition (SM-2 algorithm). As you practice, it tracks what you know and what you don't. Topics you're weak on come back. Topics you've mastered fade away.
-
-```
-📊 Your Progress (example after a few sessions)
-
-| Topic          | Score | Confidence | Next Review |
-|----------------|-------|------------|-------------|
-| basics         | 95%   | ✓ high     | —           |
-| data-structures| 85%   | ✓ high     | in 7 days   |
-| concurrency    | 45%   | ✗ low      | TODAY       |
-| advanced       | 30%   | ✗ low      | TODAY       |
-
-Recommendation: Review concurrency (due today, low confidence)
-```
-
-No more cramming. Just steady improvement.
-
-## How It Works
-
-### Step 1: Build Your Profile
+## Install
 
 ```bash
-/miz init
+./setup            # auto-link into Codex/Claude/OpenCode if their skill dirs exist
+./setup --codex    # force-install into ~/.codex/skills
+./setup --opencode # install into ~/.config/opencode/skills + the /miz command
+./setup --all      # install into all detected skill dirs
+./setup --wire     # append a miz section to this repo's AGENTS.md
 ```
 
-Paste your resume. Miz extracts everything: experience, skills, quantified achievements. Add multiple resumes—they merge together, building a complete picture of your career.
+Installs seven skills: `miz` (the router), `career`, `curriculum`, `learn`,
+`probe`, `book`, `resume`. State lives in `~/.miz/`.
 
-### Step 2: Analyze Jobs (Get the Truth)
+Use `/miz` as the single entry point. It routes subcommands:
+`/miz career ...`, `/miz curriculum <topic>`, `/miz learn <draft>`,
+`/miz probe <topic> [ch]`, `/miz book <topic>`, `/miz resume [improve|tailor
+<job>]`, or `/miz` alone for the status dashboard.
+
+For OpenCode: restart opencode after running setup so it picks up the skills
+and the `/miz` command.
+
+## Requirements
+
+The core skills need nothing beyond the agent and Python 3 (for the bin
+helpers).
+
+`/book` also needs `pandoc` and a LaTeX distribution with `xelatex`:
 
 ```bash
-/miz add job
+brew install pandoc
+brew install --cask mactex-no-gui   # or any TeX Live install
 ```
-
-Paste any job description. Get:
-
-- **Fit score** — Honest assessment, not validation
-- **Deal-breakers** — Mandatory requirements you're missing
-- **Company intel** — Their values, interview process, what they look for
-
-### Step 3: Practice Interviews (Company-Modeled)
-
-```bash
-/miz prep <company> behavioral
-/miz prep <company> coding
-/miz prep <company> system-design
-```
-
-Practice with an interviewer who asks questions based on the company's researched values and interview style. Get feedback. Get better.
-
-### Step 4: Master Your Skills (Spaced Repetition)
-
-```bash
-/miz learn <skill>
-/miz learn <skill> --review
-```
-
-Evaluate your knowledge. Drill weak areas. Track progress over time.
-
-### Step 5: Track Everything (See Patterns)
-
-```bash
-/miz tracker
-```
-
-See all your applications in one place:
-
-```
-| Company   | Role           | Fit | Status       | Stage         | Outcome |
-|-----------|----------------|-----|--------------|---------------|---------|
-| Company A | Staff Backend  | 85% | interviewing | system-design | pending |
-| Company B | Senior SWE     | 78% | rejected     | coding        | failed  |
-| Company C | Platform Lead  | 90% | offer        | final         | passed  |
-```
-
-See patterns. "I keep failing coding rounds" → focus your practice there.
-
----
-
-## Who This Is For
-
-- **Senior engineers (5+ years)** actively job hunting
-- People who've applied to 20+ jobs with low response rates
-- People who blank on behavioral questions they should nail
-- People frustrated with generic "tell me about a time" prep
-- Privacy-conscious professionals who don't want career data in some startup's cloud
-
-## Who This Is NOT For
-
-- Entry-level engineers (you need more experience to have proof points)
-- People who want to be told they're great (you'll get honest feedback instead)
-- Non-technical roles (this is built for software engineers)
-- Passive job seekers (this is for active hunting)
-
-## Commands
-
-| Command                                    | What it does                   |
-| ------------------------------------------ | ------------------------------ |
-| `/miz`                              | Status dashboard               |
-| `/miz init`                         | First-time setup               |
-| `/miz add job`                      | Analyze a job posting (honest) |
-| `/miz add resume`                   | Add another resume             |
-| `/miz add brag`                     | Capture an achievement         |
-| `/miz prep <company>`               | Interview prep menu            |
-| `/miz prep <company> behavioral`    | Behavioral practice            |
-| `/miz prep <company> coding`        | Coding practice                |
-| `/miz prep <company> system-design` | System design practice         |
-| `/miz learn <skill>`                | Practice a skill               |
-| `/miz learn <skill> --review`       | Spaced repetition review       |
-| `/miz case <job-id>`                | Build advocacy case            |
-| `/miz resume <job-id>`              | Generate tailored resume       |
-| `/miz tracker`                      | View/update applications       |
-| `/miz progress`                     | Learning dashboard             |
-
-## Installation
-
-```bash
-# Install Claude Code
-npm install -g @anthropic/claude-code
-
-# Clone miz
-git clone https://github.com/grandimam/miz.git
-cd miz
-
-# Start
-claude
-```
-
-That's it. `/miz` is now available.
 
 ## Privacy
 
-Everything stays on your machine. Your resumes, your profile, your interview practice—none of it leaves your computer.
-
-The only external calls:
-
-- LLM/Harness
-- Web fetches (to read job postings and research companies)
-
-Your career data is yours alone.
+Everything stays on your machine. Resumes, profile, job postings, interview
+practice, curriculum, probe history — none of it leaves your computer. The
+only external calls are the LLM/harness and web fetches (to read job postings
+and research companies).
 
 ## Philosophy
 
-1. **Brutal honesty first** — Know the truth about your fit before you apply
-2. **Your voice, not AI's** — Answers come from your real experience, not generated fluff
-3. **Company-modeled prep** — Practice the way that company actually interviews
-4. **Learn for keeps** — Spaced repetition over cramming
-5. **Privacy by default** — Your career data never leaves your machine
+1. **Brutal honesty first** — Know the truth about your fit and your model
+2. **The model is in your words** — You restate it; it becomes yours
+3. **Your voice, not AI's** — Answers come from your real experience
+4. **Company-modeled prep** — Practice the way that company actually asks
+5. **Learn for keeps** — Spaced repetition over cramming
+6. **Everything is an artifact** — Named files, compounded across sessions
+7. **Privacy by default** — Your data never leaves your machine
 
 ---
 
-## The Difference
-
-| Generic Prep               | Miz                                                                        |
-| -------------------------- | --------------------------------------------------------------------------------- |
-| "You're a great fit!"      | "Fit: 65%. Banking is mandatory. You don't have it."                              |
-| "Tell me about leadership" | Questions shaped by the company's actual values (researched when you add a job)  |
-| Generic STAR answers       | Your actual proof points, pulled from your profile                                |
-| Cram, forget, repeat       | Spaced repetition—weak topics come back until you know them                       |
-| Data in someone's cloud    | Everything local, everything yours                                                |
-
----
-
-**Miz: The career tool that tells you the truth.**
+**Miz: Build expertise. Validate it. Own it.**

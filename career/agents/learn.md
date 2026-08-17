@@ -18,7 +18,7 @@ intel    gaps        ↓                 │
 
 ## Invocation
 
-Called by `/miz learn <company>`.
+Called by `/miz career learn <company>`.
 
 ## UX Guidelines
 
@@ -41,7 +41,7 @@ Called by `/miz learn <company>`.
 
 ### Step 1: Validate Prerequisites
 
-Check if `prep/{company}/gaps.json` exists.
+Check if `~/.miz/prep/{company}/gaps.json` exists.
 
 **If not exists:**
 
@@ -51,9 +51,9 @@ Check if `prep/{company}/gaps.json` exists.
 
 You need to complete prep and gap analysis first:
 
-1. /miz prep {company}
-2. /miz analyze {company}
-3. /miz learn {company}
+1. /miz career prep {company}
+2. /miz career analyze {company}
+3. /miz career learn {company}
 
 ───────────────────────────────────────
 ```
@@ -61,10 +61,10 @@ You need to complete prep and gap analysis first:
 ### Step 2: Load Context
 
 Load:
-1. `prep/{company}/gaps.json` — Identified gaps
-2. `prep/{company}/intel.json` — Company intel
-3. `profile/proof-points.json` — User's achievements
-4. `profile/experience.json` — User's experience
+1. `~/.miz/prep/{company}/gaps.json` — Identified gaps
+2. `~/.miz/prep/{company}/intel.json` — Company intel
+3. `~/.miz/profile/proof-points.json` — User's achievements
+4. `~/.miz/profile/experience.json` — User's experience
 
 ### Step 3: Show Gap Dashboard
 
@@ -240,7 +240,7 @@ Ready for follow-ups:
 • "How do you know you've changed?" ✓
 • "Similar mistakes since?" ✓
 
-Saved to: prep/{company}/stories/failure.md
+Saved to: ~/.miz/prep/{company}/stories/failure.md
 
 ───────────────────────────────────────────────────────────────
 
@@ -804,7 +804,7 @@ Good luck!
 ───────────────────────────────────────────────────────────────
 ```
 
-Save mock session to `prep/{company}/sessions/{date}-mock.json`:
+Save mock session to `~/.miz/prep/{company}/sessions/{date}-mock.json`:
 
 ```json
 {
@@ -827,7 +827,7 @@ Save mock session to `prep/{company}/sessions/{date}-mock.json`:
 
 ## Saving Progress
 
-After each gap is closed, update `prep/{company}/gaps.json`:
+After each gap is closed, update `~/.miz/prep/{company}/gaps.json`:
 
 ```json
 {
@@ -837,16 +837,16 @@ After each gap is closed, update `prep/{company}/gaps.json`:
       "title": "Failure story",
       "status": "closed",
       "closed_at": "2026-05-02",
-      "artifact": "prep/{company}/stories/failure.md"
+      "artifact": "~/.miz/prep/{company}/stories/failure.md"
     }
   ]
 }
 ```
 
-Save artifacts to `prep/{company}/stories/`:
+Save artifacts to `~/.miz/prep/{company}/stories/`:
 
 ```
-prep/
+~/.miz/prep/
 └── {company}/
     ├── intel.json
     ├── gaps.json
@@ -971,8 +971,8 @@ Your preparation:
 • Full mock passed
 
 **Before the interview:**
-1. Review your stories: prep/{company}/stories/
-2. Re-read company values: prep/{company}/intel.json
+1. Review your stories: ~/.miz/prep/{company}/stories/
+2. Re-read company values: ~/.miz/prep/{company}/intel.json
 3. Check recent news one more time
 
 Good luck!

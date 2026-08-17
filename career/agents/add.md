@@ -40,7 +40,7 @@ Resume₃ ──┘
 
 ### Step 1: Check Existing Profile
 
-Check if `profile/identity.json` exists.
+Check if `~/.miz/profile/identity.json` exists.
 
 **If exists (merge mode):**
 ```
@@ -181,13 +181,13 @@ Confirm with **AskUserQuestion** before saving.
 ### Step 6: Save
 
 Write to:
-- `profile/identity.json`
-- `profile/experience.json`
-- `profile/skills.json`
-- `profile/proof-points.json`
+- `~/.miz/profile/identity.json`
+- `~/.miz/profile/experience.json`
+- `~/.miz/profile/skills.json`
+- `~/.miz/profile/proof-points.json`
 
 Save source:
-- `sources/resume/{timestamp}-{source}.md`
+- `~/.miz/sources/resume/{timestamp}-{source}.md`
 
 ```
 ╭─────────────────────────────────────╮
@@ -202,8 +202,8 @@ Save source:
 ───────────────────────────────────────
 **What's next?**
 
-→ /miz add job — Track a job opportunity
-→ /miz add brag — Add an achievement
+→ /miz career add job — Track a job opportunity
+→ /miz career add brag — Add an achievement
 ```
 
 ---
@@ -271,14 +271,14 @@ Load profile and compute positioning for THIS job:
 
 Present extracted job + positioning. Confirm before saving.
 
-Save to: `activity/jobs/{id}.json`
+Save to: `~/.miz/activity/jobs/{id}.json`
 
 ```
 ╭─────────────────────────────────────╮
 │  ✓ Job saved!                       │
 ╰─────────────────────────────────────╯
 
-**Created:** activity/jobs/stripe-staff-backend.json
+**Created:** ~/.miz/activity/jobs/stripe-staff-backend.json
 
 ───────────────────────────────────────
 ⏳ Running fit analysis...
@@ -286,7 +286,7 @@ Save to: `activity/jobs/{id}.json`
 
 ### Step 5: Fit Analysis
 
-Automatically run fit analysis (read `agents/fit-analysis.md`).
+Automatically run fit analysis (read `agents/analyze.md`).
 
 Update job file with fit score.
 
@@ -300,9 +300,9 @@ Update job file with fit score.
 
 **What's next?**
 
-→ /miz prep {company} — Research company for interviews
-→ /miz case {job-id} — Build talking points
-→ /miz tracker — View all applications
+→ /miz career prep {company} — Research company for interviews
+→ /miz career case {job-id} — Build talking points
+→ /miz career tracker — View all applications
 ───────────────────────────────────────
 ```
 
@@ -410,21 +410,21 @@ Create proof point:
 
 Present structured achievement. Confirm before saving.
 
-Append to: `profile/proof-points.json`
+Append to: `~/.miz/profile/proof-points.json`
 
 ```
 ╭─────────────────────────────────────╮
 │  ✓ Achievement saved!               │
 ╰─────────────────────────────────────╯
 
-**Added to:** profile/proof-points.json
+**Added to:** ~/.miz/profile/proof-points.json
 **Total proof points:** 9
 
 ───────────────────────────────────────
 **What's next?**
 
-→ /miz add brag — Add another achievement
-→ /miz add job — Add a job to track
+→ /miz career add brag — Add another achievement
+→ /miz career add job — Add a job to track
 ```
 
 ---
@@ -477,11 +477,11 @@ Parse and extract:
 ### Step 4: Merge into Profile
 
 Update:
-- `profile/proof-points.json` — Add extracted achievements
-- `profile/skills.json` — Add/upgrade skills
+- `~/.miz/profile/proof-points.json` — Add extracted achievements
+- `~/.miz/profile/skills.json` — Add/upgrade skills
 
 Save source:
-- `sources/work-samples/{date}-{slug}.md`
+- `~/.miz/sources/work-samples/{date}-{slug}.md`
 
 ### Step 5: Confirm
 
@@ -490,7 +490,7 @@ Save source:
 ✓ **Document added**
 
 📄 **Payment gateway RFC**
-   sources/work-samples/2026-04-payment-rfc.md
+   ~/.miz/sources/work-samples/2026-04-payment-rfc.md
 
 📊 **Extracted**
    • 2 proof points added
@@ -536,7 +536,7 @@ Look for:
 
 | Type | Primary Output | Source Archive |
 |------|----------------|----------------|
-| resume | `profile/*.json` | `sources/resume/` |
-| job | `activity/jobs/*.json` | — |
-| brag | `profile/proof-points.json` | — |
-| doc | `profile/*.json` | `sources/work-samples/` |
+| resume | `~/.miz/profile/*.json` | `~/.miz/sources/resume/` |
+| job | `~/.miz/activity/jobs/*.json` | — |
+| brag | `~/.miz/profile/proof-points.json` | — |
+| doc | `~/.miz/profile/*.json` | `~/.miz/sources/work-samples/` |

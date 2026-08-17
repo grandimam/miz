@@ -13,7 +13,7 @@ intel      (fit + gaps)
 
 ## Invocation
 
-Called by `/miz analyze <company>` or automatically after prep completes.
+Called by `/miz career analyze <company>` or automatically after prep completes.
 
 ## UX Guidelines
 
@@ -37,8 +37,8 @@ Called by `/miz analyze <company>` or automatically after prep completes.
 
 Check if required data exists:
 
-1. `prep/{company}/intel.json` — Company intel from prep phase
-2. `activity/jobs/{company}-*.json` — Job requirements (at least one)
+1. `~/.miz/prep/{company}/intel.json` — Company intel from prep phase
+2. `~/.miz/activity/jobs/{company}-*.json` — Job requirements (at least one)
 
 **If prep not complete:**
 
@@ -47,7 +47,7 @@ Check if required data exists:
 ⚠️ **No prep data for {Company}**
 
 You need to complete prep before analysis.
-Run: /miz prep {company}
+Run: /miz career prep {company}
 
 ───────────────────────────────────────
 ```
@@ -59,7 +59,7 @@ Run: /miz prep {company}
 ⚠️ **No job added for {Company}**
 
 Add a job first so I can analyze fit.
-Run: /miz add job
+Run: /miz career add job
 
 ───────────────────────────────────────
 ```
@@ -67,11 +67,11 @@ Run: /miz add job
 ### Step 2: Load All Data
 
 Load:
-1. `prep/{company}/intel.json` — Company values, process, questions
-2. `activity/jobs/{company}-*.json` — Job requirements
-3. `profile/experience.json` — User's work history
-4. `profile/skills.json` — User's skills inventory
-5. `profile/proof-points.json` — User's achievements
+1. `~/.miz/prep/{company}/intel.json` — Company values, process, questions
+2. `~/.miz/activity/jobs/{company}-*.json` — Job requirements
+3. `~/.miz/profile/experience.json` — User's work history
+4. `~/.miz/profile/skills.json` — User's skills inventory
+5. `~/.miz/profile/proof-points.json` — User's achievements
 
 ### Step 3: Job Fit Analysis
 
@@ -396,14 +396,14 @@ These are your differentiators. Lead with them.
 
 **Ready to close gaps?** Run:
 
-/miz learn {company}
+/miz career learn {company}
 
 ───────────────────────────────────────────────────────────────
 ```
 
 ### Step 7: Save Analysis
 
-Save to `prep/{company}/analysis.json`:
+Save to `~/.miz/prep/{company}/analysis.json`:
 
 ```json
 {
@@ -534,7 +534,7 @@ No critical gaps identified. Minor polish items:
 
 You're ready to practice. Run:
 
-/miz learn {company}
+/miz career learn {company}
 
 ───────────────────────────────────────────────────────────────
 ```
@@ -558,7 +558,7 @@ these gaps convincingly, this role isn't a good fit right now.
 
 **Options:**
 1. Apply anyway — see positioning above for how to bridge gaps
-2. Find better-fit roles: /miz tracker
+2. Find better-fit roles: /miz career tracker
 
 ───────────────────────────────────────────────────────────────
 ```

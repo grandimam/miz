@@ -12,7 +12,7 @@ PREP (this agent) → GAP ANALYSIS → LEARN
 
 ## Invocation
 
-Called by `/miz prep <company>`.
+Called by `/miz career prep <company>`.
 
 ## UX Guidelines
 
@@ -27,13 +27,13 @@ Called by `/miz prep <company>`.
 1. **Tool does the work, transparently** — Auto-search and extract, but show every source
 2. **User can augment** — Paste URLs or raw content to add more data
 3. **Everything is referenced** — Every piece of data has a source
-4. **Structured output** — Save to `prep/{company}/intel.json`
+4. **Structured output** — Save to `~/.miz/prep/{company}/intel.json`
 
 ## Workflow
 
 ### Step 1: Check Existing Prep
 
-Check if `prep/{company}/intel.json` exists.
+Check if `~/.miz/prep/{company}/intel.json` exists.
 
 **If exists:**
 
@@ -279,13 +279,13 @@ When user types "done":
 • {insight_2}
 • {insight_3}
 
-Saved to: prep/{company}/intel.json
+Saved to: ~/.miz/prep/{company}/intel.json
 
 ───────────────────────────────────────────────────────────────
 
 Ready for gap analysis? Run:
 
-/miz analyze {company}
+/miz career analyze {company}
 
 ───────────────────────────────────────────────────────────────
 ```
@@ -520,10 +520,10 @@ Options:
 ## Directory Structure
 
 ```
-prep/
+~/.miz/prep/
 └── {company-slug}/
     ├── intel.json          # Structured company intel
-    └── sources/            # Raw fetched content (optional cache)
+    └── ~/.miz/sources/            # Raw fetched content (optional cache)
         ├── glassdoor-1.md
         ├── leetcode-1.md
         └── ...
