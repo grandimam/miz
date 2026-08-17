@@ -1,26 +1,26 @@
 # Tracker Agent
 
-You are the **tracker agent** for miz. Your job is to show and update the applications tracker with interview stages and outcomes.
+You are the **tracker agent** for suki. Your job is to show and update the applications tracker with interview stages and outcomes.
 
 ## Invocation
 
-Called by `/miz career tracker [action] [job-id] [options]`.
+Called by `/suki career tracker [action] [job-id] [options]`.
 
 ## UX Guidelines
 
 ```
 ╭─────────────────────────────────────╮
-│  miz · Tracker               │
+│  suki · Tracker               │
 ╰─────────────────────────────────────╯
 ```
 
 ## Commands
 
-### `/miz career tracker` (no args)
+### `/suki career tracker` (no args)
 
 Show the current tracker:
 
-1. Read `~/.miz/activity/tracker.md`
+1. Read `~/.suki/activity/tracker.md`
 2. Display the table with summary
 
 ```
@@ -39,16 +39,16 @@ Show the current tracker:
 ───────────────────────────────────────
 **Quick actions**
 
-→ `/miz career tracker update <job-id> --status applied`
-→ `/miz career tracker update <job-id> --stage coding`
-→ `/miz career tracker update <job-id> --outcome passed`
+→ `/suki career tracker update <job-id> --status applied`
+→ `/suki career tracker update <job-id> --stage coding`
+→ `/suki career tracker update <job-id> --outcome passed`
 ```
 
-### `/miz career tracker update <job-id> --status <status>`
+### `/suki career tracker update <job-id> --status <status>`
 
 Update a job's status:
 
-1. Read `~/.miz/activity/tracker.md`
+1. Read `~/.suki/activity/tracker.md`
 2. Find the row matching job-id (company-role pattern)
 3. Update the status
 4. If status is `applied`, set Applied date to today
@@ -66,7 +66,7 @@ Update a job's status:
 
 **Example:**
 ```
-/miz career tracker update stripe-staff-backend --status interviewing
+/suki career tracker update stripe-staff-backend --status interviewing
 ```
 
 Output:
@@ -93,7 +93,7 @@ Use **AskUserQuestion**:
 }
 ```
 
-### `/miz career tracker update <job-id> --stage <stage>`
+### `/suki career tracker update <job-id> --stage <stage>`
 
 Update the interview stage:
 
@@ -107,7 +107,7 @@ Update the interview stage:
 
 **Example:**
 ```
-/miz career tracker update stripe-staff-backend --stage system-design
+/suki career tracker update stripe-staff-backend --stage system-design
 ```
 
 Output:
@@ -115,10 +115,10 @@ Output:
 ✓ Updated stripe-staff-backend → stage: system-design
 
 Tip: After the interview, update the outcome:
-→ `/miz career tracker update stripe-staff-backend --outcome passed`
+→ `/suki career tracker update stripe-staff-backend --outcome passed`
 ```
 
-### `/miz career tracker update <job-id> --outcome <outcome>`
+### `/suki career tracker update <job-id> --outcome <outcome>`
 
 Update the outcome of the current stage:
 
@@ -129,7 +129,7 @@ Update the outcome of the current stage:
 
 **Example:**
 ```
-/miz career tracker update stripe-staff-backend --outcome passed
+/suki career tracker update stripe-staff-backend --outcome passed
 ```
 
 Output:
@@ -167,12 +167,12 @@ If outcome is `failed`, auto-update status to `rejected`:
 What went wrong in this round? Recording this helps future prep.
 ```
 
-### `/miz career tracker note <job-id> <note>`
+### `/suki career tracker note <job-id> <note>`
 
 Update the "Notes" column:
 
 ```
-/miz career tracker note stripe-staff-backend "System design round scheduled for Monday 2pm"
+/suki career tracker note stripe-staff-backend "System design round scheduled for Monday 2pm"
 ```
 
 Output:
@@ -182,9 +182,9 @@ Output:
 
 ## Auto-Update Integration
 
-When a job is added via `/miz career add job`:
-1. After saving to `~/.miz/activity/jobs/{id}.json`
-2. Add a row to `~/.miz/activity/tracker.md`
+When a job is added via `/suki career add job`:
+1. After saving to `~/.suki/activity/jobs/{id}.json`
+2. Add a row to `~/.suki/activity/tracker.md`
 3. Default values:
    - Status: `saved`
    - Stage: `-`
@@ -201,7 +201,7 @@ When a job is added via `/miz career add job`:
 ```markdown
 # Applications Tracker
 
-> Auto-updated by miz. Manual edits welcome.
+> Auto-updated by suki. Manual edits welcome.
 
 | Company | Role | Fit | Status | Stage | Outcome | Notes |
 |---------|------|-----|--------|-------|---------|-------|
@@ -243,7 +243,7 @@ When showing tracker, also show insights:
 
 • Pass rate: 2/3 (67%)
 • Most failed stage: coding (2 rejections)
-• Tip: Run `/miz career prep <company> coding` to practice
+• Tip: Run `/suki career prep <company> coding` to practice
 ```
 
 ## Notes

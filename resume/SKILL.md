@@ -1,24 +1,24 @@
 ---
 name: resume
 description: |
-  Audit, improve, and tailor the user's resume against their miz profile and
-  target jobs. Loads the resume from ~/.miz/sources/resume/ and the master
-  profile from ~/.miz/profile/, scores every bullet for measurable impact,
+  Audit, improve, and tailor the user's resume against their own profile and
+  target jobs. Loads the resume from ~/.suki/sources/resume/ and the master
+  profile from ~/.suki/profile/, scores every bullet for measurable impact,
   rewrites weak bullets (metrics, STAR, action verbs, keywords), checks ATS
   parsing, and tailors the resume to a specific job posting in
-  ~/.miz/activity/jobs/. Use when asked to "improve my resume", "rewrite my
+  ~/.suki/activity/jobs/. Use when asked to "improve my resume", "rewrite my
   resume", "make my resume better", "check my resume", "tailor my resume for
-  <company>", or "fix my resume". Subcommands: /miz resume, /miz resume
-  improve, /miz resume tailor <job-id>, /miz resume audit.
+  <company>", or "fix my resume". Subcommands: /suki resume, /suki resume
+  improve, /suki resume tailor <job-id>, /suki resume audit.
 ---
 
 # Resume
 
 Your resume, made honest and effective.
 
-This skill is the resume layer of the miz stack: it audits, rewrites, and
+This skill is the resume layer of the suki stack: it audits, rewrites, and
 tailors your resume against the facts you've already captured in your
-profile. All state lives under `~/.miz/`.
+profile. All state lives under `~/.suki/`.
 
 ## UX Guidelines
 
@@ -31,7 +31,7 @@ Always use rich formatting for a polished terminal experience:
 
 ## Principle: from profile, not from scratch
 
-Your profile (`~/.miz/profile/*.json`) is the source of truth for what you
+Your profile (`~/.suki/profile/*.json`) is the source of truth for what you
 actually did. The resume should be a *projection* of the profile — the same
 facts, selected and compressed for the reader. Never invent achievements,
 metrics, or titles that are not in the profile. If the profile lacks a metric
@@ -39,22 +39,22 @@ you need, say so and mark it `[needs number]` rather than fabricating it.
 
 ## Commands
 
-### `/miz resume` (no args)
+### `/suki resume` (no args)
 
 Full audit of the latest resume against the profile.
 
-1. Find the most recent resume in `~/.miz/sources/resume/` (prefer the
+1. Find the most recent resume in `~/.suki/sources/resume/` (prefer the
    newest file, any of `.md`, `.txt`, `.pdf`, `.docx`). If none exists, tell
-   the user to add one first: `→ /miz career add resume`.
+   the user to add one first: `→ /suki career add resume`.
 2. Load profile files: `identity.json`, `experience.json`, `education.json`,
    `skills.json`, `proof-points.json`.
 3. Audit against the profile and render the scorecard.
 
-### `/miz resume audit`
+### `/suki resume audit`
 
-Same as `/miz resume` with no args.
+Same as `/suki resume` with no args.
 
-### `/miz resume improve`
+### `/suki resume improve`
 
 Rewrite the resume in place of the weak spots found by the audit.
 
@@ -65,22 +65,22 @@ Rewrite the resume in place of the weak spots found by the audit.
 - Do NOT invent facts. Use metrics from proof-points.json; mark missing ones
   `[needs number]`.
 - Output the full improved resume as markdown, then save a copy to
-  `~/.miz/sources/resume/{date}-improved.md` (append, never clobber).
+  `~/.suki/sources/resume/{date}-improved.md` (append, never clobber).
 
-### `/miz resume tailor <job-id>`
+### `/suki resume tailor <job-id>`
 
 Tailor the resume to a specific job posting.
 
-- Load `~/.miz/activity/jobs/{job-id}.json`.
+- Load `~/.suki/activity/jobs/{job-id}.json`.
 - Reorder skills and highlights so the job's `must_have` requirements come
   first; demote or trim content that is not relevant.
 - Map each `must_have` requirement to the strongest matching proof point.
 - Call out honestly (in a hidden note to the user, not on the resume) which
   `must_have` items have no supporting evidence — those are gaps to close in
   prep, not things to fake on the resume.
-- Save as `~/.miz/sources/resume/{date}-{job-id}-tailored.md`.
+- Save as `~/.suki/sources/resume/{date}-{job-id}-tailored.md`.
 
-If no job-id provided, list available jobs in `~/.miz/activity/jobs/`:
+If no job-id provided, list available jobs in `~/.suki/activity/jobs/`:
 ```
 ───────────────────────────────────────
 📋 **Jobs in pipeline**
@@ -125,7 +125,7 @@ Render this after every audit:
 
 **Score: 6/10**
 ───────────────────────────────────────
-Next: → /miz resume improve   Rewrite the weak spots
+Next: → /suki resume improve   Rewrite the weak spots
 ───────────────────────────────────────
 ```
 
@@ -146,16 +146,16 @@ Rules for the scorecard:
 ## Where things live
 
 ```
-~/.miz/profile/                # source of truth (read-only)
+~/.suki/profile/                # source of truth (read-only)
 ├── identity.json
 ├── experience.json
 ├── education.json
 ├── skills.json
 └── proof-points.json
 
-~/.miz/activity/jobs/*.json    # job postings to tailor against
+~/.suki/activity/jobs/*.json    # job postings to tailor against
 
-~/.miz/sources/resume/         # resumes (append-only)
+~/.suki/sources/resume/         # resumes (append-only)
 ├── {date}-{name}-resume.pdf   # original
 ├── {date}-improved.md         # improved version
 └── {date}-{job-id}-tailored.md # tailored version

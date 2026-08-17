@@ -1,13 +1,13 @@
-"""miz-status: deterministic progress + spaced-repetition status for topics.
+"""suki-status: deterministic progress + spaced-repetition status for topics.
 
 Usage:
-  miz-status                 # all topics, human table
-  miz-status python          # one topic
-  miz-status python --json   # machine-readable
-  miz-status --due           # only chapters due for review (all topics)
-  miz-status python --due    # only chapters due for review (one topic)
+  suki-status                 # all topics, human table
+  suki-status python          # one topic
+  suki-status python --json   # machine-readable
+  suki-status --due           # only chapters due for review (all topics)
+  suki-status python --due    # only chapters due for review (one topic)
 
-Reads curriculum.json + mastery.json under ~/.miz/topics/<slug>/.
+Reads curriculum.json + mastery.json under ~/.suki/topics/<slug>/.
 A mastered chapter is "due" when now >= next_review_at. If next_review_at is
 absent, it falls back to mastered_at/probed_at + a 1-day default interval.
 """
@@ -16,8 +16,8 @@ import json
 import os
 import sys
 
-MIZ_HOME = os.environ.get("MIZ_HOME", os.path.expanduser("~/.miz"))
-TOPICS_DIR = os.path.join(MIZ_HOME, "topics")
+SUKI_HOME = os.environ.get("SUKI_HOME", os.path.expanduser("~/.suki"))
+TOPICS_DIR = os.path.join(SUKI_HOME, "topics")
 DEFAULT_INTERVAL_DAYS = 1.0
 
 STATUS_ORDER = ["not_started", "in_progress", "probed", "mastered", "credited"]

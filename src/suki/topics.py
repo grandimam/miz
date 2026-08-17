@@ -1,10 +1,10 @@
-"""miz-topics: list topics under ~/.miz/topics/."""
+"""suki-topics: list topics under ~/.suki/topics/."""
 import json
 import os
 import sys
 
-MIZ_HOME = os.environ.get("MIZ_HOME", os.path.expanduser("~/.miz"))
-TOPICS_DIR = os.path.join(MIZ_HOME, "topics")
+SUKI_HOME = os.environ.get("SUKI_HOME", os.path.expanduser("~/.suki"))
+TOPICS_DIR = os.path.join(SUKI_HOME, "topics")
 
 
 def topic_slugs():

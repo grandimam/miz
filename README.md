@@ -1,20 +1,20 @@
-# Miz
+# Suki
 
 > Build expertise. Validate it. Own it.
 
 ```
 ╭────────────────────────────────────────────╮
-│                  m i z                      │
+│                  s u k i                    │
 │   Build expertise. Validate it. Own it.    │
 ╰────────────────────────────────────────────╯
 ```
 
-Miz turns an AI coding agent into a learning partner that doesn't trust
+Suki turns an AI coding agent into a learning partner that doesn't trust
 you. Not in a moral sense. It refuses to believe you know something just
 because you read it, watched a course, or nodded along with a tutorial.
 
 Learning isn't consuming content. It's being forced to say it back, from
-your own head, until it holds. Miz makes you do that, then it remembers
+your own head, until it holds. Own makes you do that, then it remembers
 what you're weak at and brings it back before it fades. Then it helps you
 use all of that to land the right job.
 
@@ -24,12 +24,12 @@ use all of that to land the right job.
 
 ## See it in action
 
-One command, `/miz`, is the status dashboard and the router to everything
+One command, `/suki`, is the status dashboard and the router to everything
 else. It knows where you left off and what's due next.
 
 ```
 ╭──────────────────────────────────────────╮
-│                  m i z                    │
+│                  s u k i                    │
 │   Build expertise. Validate it. Own it.  │
 ╰──────────────────────────────────────────╯
 
@@ -51,23 +51,23 @@ else. It knows where you left off and what's due next.
 
 ────────────────────────────────────────────
 Next step
-  → /miz probe active-directory 2.1
+  → /suki probe active-directory 2.1
 ────────────────────────────────────────────
 ```
 
 ## Quick start
 
 ```bash
-pip install miz
-miz install --all     # links the skills into opencode, claude, and codex
+pip install suki
+suki install --all     # links the skills into opencode, claude, and codex
 ```
 
 That's it. Restart your agent, then:
 
 ```bash
-/miz career init      # build your profile (2 min)
-/miz curriculum python    # start learning anything
-/miz probe python 1.1     # build + verify understanding
+/suki career init      # build your profile (2 min)
+/suki curriculum python    # start learning anything
+/suki probe python 1.1     # build + verify understanding
 ```
 
 ---
@@ -77,7 +77,7 @@ That's it. Restart your agent, then:
 ```
 LEARNING ENGINE (any topic)          CAREER LAYER (job hunting)
 ─────────────────────────────        ─────────────────────────────
-curriculum → learn                   /miz career: init → add → prep → analyze
+curriculum → learn                   /suki career: init → add → prep → analyze
      ↓        ↓                     → learn → tracker
 probe (build + verify)               (fit, gaps, mocks, outcomes)
      ↓
@@ -94,7 +94,7 @@ sessions.
 ## 📚 The learning engine
 
 Most learning tooling either evaluates you (quizzes) or dumps content at
-you (courses). Miz does the part in between: it helps you *construct* the
+you (courses). Suki does the part in between: it helps you *construct* the
 picture in your head, layer by layer, then tests whether that picture
 actually holds up, drills the cracks it finds, and resurfaces the knowledge
 before it fades. You build it. The agent holds the structure.
@@ -102,40 +102,40 @@ before it fades. You build it. The agent holds the structure.
 ### How a learning session goes
 
 ```
-/miz curriculum active-directory   → design the path: the chapters, the
+/suki curriculum active-directory   → design the path: the chapters, the
                                      order, what "mastered" means
 
-/miz learn draft.md                → review a chapter you wrote, from a
+/suki learn draft.md                → review a chapter you wrote, from a
                                      serious learner's perspective: is the
                                      order right? are the examples real?
 
-/miz probe active-directory 1.1    → force a restatement: explain the
+/suki probe active-directory 1.1    → force a restatement: explain the
                                      chapter in your own words, test it,
                                      repair the cracks inline
                                      → not mastered? probe again
                                      → mastered? revisit in 3 → 10 → 30 → 90
                                        days so it doesn't quietly rot
 
-/miz book active-directory         → render curriculum + probe history as a
+/suki book active-directory         → render curriculum + probe history as a
                                      publication-quality teaching book
 ```
 
 The loop is the same no matter the topic: a language, a framework, a
 subfield, a craft. Skills do not exist in isolation; each writes an
-artifact to `~/.miz/` that the next one reads, so your work compounds
+artifact to `~/.suki/` that the next one reads, so your work compounds
 across sessions.
 
 | Command | What it does |
 |---------|--------------|
-| `/miz curriculum <topic>` | Design a definitive learning path: chapters, order, mastery checks |
-| `/miz learn <draft>` | Review a chapter draft from a learner's perspective |
-| `/miz probe <topic> [ch]` | Build + verify understanding chapter by chapter; repair cracks; spaced repetition |
-| `/miz book <topic>` | Render the topic as a publication-quality teaching book |
+| `/suki curriculum <topic>` | Design a definitive learning path: chapters, order, mastery checks |
+| `/suki learn <draft>` | Review a chapter draft from a learner's perspective |
+| `/suki probe <topic> [ch]` | Build + verify understanding chapter by chapter; repair cracks; spaced repetition |
+| `/suki book <topic>` | Render the topic as a publication-quality teaching book |
 
 ```
-/miz curriculum python
-/miz probe python 1.2
-/miz book python              # -> ~/.miz/topics/python/book/book.pdf
+/suki curriculum python
+/suki probe python 1.2
+/suki book python              # -> ~/.suki/topics/python/book/book.pdf
 ```
 
 ---
@@ -145,32 +145,32 @@ across sessions.
 Job hunting is broken: you apply to jobs you're not qualified for, skip
 jobs you'd be perfect for, prep with generic questions, forget your own
 accomplishments, and cram before interviews. Every career tool tells you
-what you want to hear. Miz tells you the truth: about your fit, your gaps,
+what you want to hear. Suki tells you the truth: about your fit, your gaps,
 and your resume.
 
 ### How a job hunt goes
 
 ```
-/miz career init                 → set up your profile, add your resume,
+/suki career init                 → set up your profile, add your resume,
                                    merge it into a master profile
 
-/miz career add resume           → parse a resume, merge into profile
-/miz career add job <url>        → parse the JD, research the company,
+/suki career add resume           → parse a resume, merge into profile
+/suki career add job <url>        → parse the JD, research the company,
                                    derive your positioning for it
-/miz career analyze crowdstrike  → honest fit score: requirements × your
+/suki career analyze crowdstrike  → honest fit score: requirements × your
                                    evidence, deal-breakers called out
 
-/miz career prep crowdstrike     → company-modeled interview prep: how they
+/suki career prep crowdstrike     → company-modeled interview prep: how they
                                    actually ask, mapped to their values
-/miz career learn crowdstrike    → close gaps (Socratic) + checkpoint and
+/suki career learn crowdstrike    → close gaps (Socratic) + checkpoint and
                                    full mocks. Exposed in a mock? The gap
                                    reopens. Fix → mock again → ready.
 
-/miz resume                      → audit your resume against your profile
-/miz resume improve              → rewrite weak bullets with your real metrics
-/miz resume tailor <job>         → tailor the resume to a specific job
+/suki resume                      → audit your resume against your profile
+/suki resume improve              → rewrite weak bullets with your real metrics
+/suki resume tailor <job>         → tailor the resume to a specific job
 
-/miz career tracker              → track applications + outcomes
+/suki career tracker              → track applications + outcomes
 ```
 
 The learn phase is a continuous loop:
@@ -203,14 +203,14 @@ the banking gap.
 
 ### Practice the way that company asks
 
-When you add a job, Miz researches the company (careers page, engineering
+When you add a job, Suki researches the company (careers page, engineering
 blog, Glassdoor) and builds an intel file. Then it asks you questions *the
 way they would ask them*, mapped to their actual values and process.
 
 ### Answers from YOUR experience
 
 You blank on behavioral questions because you forget your own
-accomplishments. Miz doesn't. When you say "help," it searches your profile
+accomplishments. Suki doesn't. When you say "help," it searches your profile
 and suggests an answer from your actual experience: your stories, your
 numbers, their framing.
 
@@ -218,19 +218,19 @@ numbers, their framing.
 
 | Command | What it does |
 |---------|--------------|
-| `/miz` | Status dashboard + router |
-| `/miz career` | Career overview |
-| `/miz career init` | First-time setup |
-| `/miz career add job` | Analyze a job posting (honest) |
-| `/miz career add resume` | Add another resume |
-| `/miz career add brag` | Capture an achievement |
-| `/miz career prep <company>` | Research company + interview prep menu |
-| `/miz career analyze <company>` | Fit score + gaps + positioning |
-| `/miz career learn <company>` | Close gaps + mock interviews (continuous loop) |
-| `/miz career tracker` | View/update applications |
-| `/miz resume` | Audit the resume against the profile |
-| `/miz resume improve` | Rewrite weak bullets with metrics + keywords |
-| `/miz resume tailor <job>` | Tailor the resume to a specific job |
+| `/suki` | Status dashboard + router |
+| `/suki career` | Career overview |
+| `/suki career init` | First-time setup |
+| `/suki career add job` | Analyze a job posting (honest) |
+| `/suki career add resume` | Add another resume |
+| `/suki career add brag` | Capture an achievement |
+| `/suki career prep <company>` | Research company + interview prep menu |
+| `/suki career analyze <company>` | Fit score + gaps + positioning |
+| `/suki career learn <company>` | Close gaps + mock interviews (continuous loop) |
+| `/suki career tracker` | View/update applications |
+| `/suki resume` | Audit the resume against the profile |
+| `/suki resume improve` | Rewrite weak bullets with metrics + keywords |
+| `/suki resume tailor <job>` | Tailor the resume to a specific job |
 
 ---
 
@@ -238,7 +238,7 @@ numbers, their framing.
 
 | Skill | Layer | Role |
 |-------|-------|------|
-| `miz` | umbrella | Status dashboard + router (single entry point) |
+| `suki` | umbrella | Status dashboard + router (single entry point) |
 | `career` | career | Profile, job-fit, prep, gap closing, tracking |
 | `resume` | career | Audit, improve, and tailor the resume |
 | `curriculum` | learning | Design a definitive learning path |
@@ -250,13 +250,13 @@ numbers, their framing.
 
 ## 🗂️ State
 
-Everything lives under `~/.miz/`, one folder per topic plus the career
+Everything lives under `~/.suki/`, one folder per topic plus the career
 folders. Current state is JSON; history is append-only JSONL. Nothing is
 ever deleted, so the full arc of your learning and job hunting is
 recoverable.
 
 ```
-~/.miz/
+~/.suki/
 ├── topics/<slug>/        # learning (curriculum.json, mastery.json, probes, book/)
 ├── profile/              # career (identity, experience, skills, proof-points)
 ├── sources/              # raw resumes + work samples
@@ -266,43 +266,43 @@ recoverable.
 └── learning/             # per-skill progress + question banks
 ```
 
-The `miz` CLI manages the stack:
+The `suki` CLI manages the stack:
 
-- `miz install [--opencode|--claude|--codex|--all]` — link skills into your agent
-- `miz topics` — list topics
-- `miz status [topic]` — progress + spaced-repetition due status
-- `miz book <topic>` — render a topic as a book
+- `suki install [--opencode|--claude|--codex|--all]` — link skills into your agent
+- `suki topics` — list topics
+- `suki status [topic]` — progress + spaced-repetition due status
+- `suki book <topic>` — render a topic as a book
 
 ---
 
 ## 📦 Install
 
 ```bash
-pip install miz
-miz install --all
+pip install suki
+suki install --all
 ```
 
-That's the whole setup. `pip install miz` gives you the `miz` command;
-`miz install` links all seven skills (`miz`, `career`, `curriculum`,
+That's the whole setup. `pip install suki` gives you the `suki` command;
+`suki install` links all seven skills (`suki`, `career`, `curriculum`,
 `learn`, `probe`, `book`, `resume`) into your agent. Default to `--all`, or
 pick just your agent with `--opencode`, `--claude`, or `--codex`.
 
-Restart your agent after installing, then use `/miz` as the single entry
-point. It routes subcommands: `/miz career ...`, `/miz curriculum <topic>`,
-`/miz learn <draft>`, `/miz probe <topic> [ch]`, `/miz book <topic>`,
-`/miz resume [improve|tailor <job>]`, or `/miz` alone for the status
+Restart your agent after installing, then use `/suki` as the single entry
+point. It routes subcommands: `/suki career ...`, `/suki curriculum <topic>`,
+`/suki learn <draft>`, `/suki probe <topic> [ch]`, `/suki book <topic>`,
+`/suki resume [improve|tailor <job>]`, or `/suki` alone for the status
 dashboard.
 
 **From source (contributing):**
 
 ```bash
-git clone <this repo> && cd miz
+git clone <this repo> && cd suki
 pip install -e .
 ```
 
 ## ⚙️ Requirements
 
-The core skills need nothing beyond the agent and the `miz` CLI (Python 3).
+The core skills need nothing beyond the agent and the `suki` CLI (Python 3).
 
 `/book` also needs `pandoc` and a LaTeX distribution with `xelatex`:
 
@@ -330,4 +330,4 @@ postings and research companies).
 
 ---
 
-**Miz: Build expertise. Validate it. Own it.**
+**Suki: Build expertise. Validate it. Own it.**

@@ -1,11 +1,11 @@
 ---
 name: career
 description: |
-  The career layer of miz: profile building, honest job-fit analysis,
+  The career layer of suki: profile building, honest job-fit analysis,
   company-modeled interview prep, gap closing, and application tracking.
-  All state lives under ~/.miz/. Use /miz career init to set up, /miz career add
-  <type> to add data, /miz career prep <company> for intel, /miz career analyze
-  <company> for fit, /miz career learn <company> to close gaps, and /miz career
+  All state lives under ~/.suki/. Use /suki career init to set up, /suki career add
+  <type> to add data, /suki career prep <company> for intel, /suki career analyze
+  <company> for fit, /suki career learn <company> to close gaps, and /suki career
   tracker to track applications.
 ---
 
@@ -13,9 +13,9 @@ description: |
 
 Your career, reflected honestly.
 
-This skill is the career layer of the miz stack: profile, honest fit analysis,
+This skill is the career layer of the suki stack: profile, honest fit analysis,
 company-modeled interview prep, gap closing, and tracking. All state lives
-under `~/.miz/`.
+under `~/.suki/`.
 
 ## UX Guidelines
 
@@ -28,35 +28,35 @@ Always use rich formatting for a polished terminal experience:
 
 ## Commands
 
-### `/miz career` (no args)
+### `/suki career` (no args)
 
 Show a brief career overview: profile stats, job pipeline, prep companies,
 tracker summary. Point to next actions.
 
-### `/miz career init`
+### `/suki career init`
 
-First-time setup. Creates `~/.miz/` directories, initializes profile files,
+First-time setup. Creates `~/.suki/` directories, initializes profile files,
 guides user through adding resume.
 
 Read `agents/setup.md` and follow its instructions.
 
-### `/miz career status`
+### `/suki career status`
 
-Show a brief career overview (same as `/miz career` with no args).
+Show a brief career overview (same as `/suki career` with no args).
 
 ---
 
 ### Add Commands
 
-All `/miz career add` commands process immediately.
+All `/suki career add` commands process immediately.
 
-#### `/miz career add resume`
+#### `/suki career add resume`
 
 Add a resume and merge into profile.
 
 Read `agents/add.md` and follow its instructions.
 
-#### `/miz career add job [url]`
+#### `/suki career add job [url]`
 
 Add a job description, analyze fit, derive positioning, research company.
 
@@ -65,13 +65,13 @@ Add a job description, analyze fit, derive positioning, research company.
 
 Read `agents/add.md` and follow its instructions.
 
-#### `/miz career add brag`
+#### `/suki career add brag`
 
 Capture a professional achievement.
 
 Read `agents/add.md` and follow its instructions.
 
-#### `/miz career add doc`
+#### `/suki career add doc`
 
 Add a tech spec, RFC, design doc, or work sample.
 
@@ -81,18 +81,18 @@ Read `agents/add.md` and follow its instructions.
 
 ### Tracker Commands
 
-#### `/miz career tracker`
+#### `/suki career tracker`
 
 View and update the applications tracker.
 
 Read `agents/tracker.md` and follow its instructions.
 
 **Subcommands:**
-- `/miz career tracker` — Show tracker table
-- `/miz career tracker update <job-id> --status <status>` — Update job status
-- `/miz career tracker update <job-id> --stage <stage>` — Update interview stage
-- `/miz career tracker update <job-id> --outcome <outcome>` — Update stage outcome
-- `/miz career tracker note <job-id> <note>` — Update notes
+- `/suki career tracker` — Show tracker table
+- `/suki career tracker update <job-id> --status <status>` — Update job status
+- `/suki career tracker update <job-id> --stage <stage>` — Update interview stage
+- `/suki career tracker update <job-id> --outcome <outcome>` — Update stage outcome
+- `/suki career tracker note <job-id> <note>` — Update notes
 
 **Statuses:** `saved`, `applied`, `interviewing`, `offered`, `accepted`, `rejected`, `withdrawn`
 
@@ -104,7 +104,7 @@ Read `agents/tracker.md` and follow its instructions.
 
 ### Interview Prep Commands
 
-#### `/miz career prep <company>`
+#### `/suki career prep <company>`
 
 Start interview prep for a company. Shows menu to pick interview type.
 
@@ -126,7 +126,7 @@ Available companies (from jobs in pipeline):
 Which company? Enter the name:
 ```
 
-#### `/miz career prep <company> behavioral`
+#### `/suki career prep <company> behavioral`
 
 Behavioral interview practice.
 
@@ -138,7 +138,7 @@ Features:
 - STAR format coaching
 - Feedback from company's perspective
 
-#### `/miz career prep <company> coding`
+#### `/suki career prep <company> coding`
 
 Coding interview practice.
 
@@ -150,7 +150,7 @@ Features:
 - Hints and walkthroughs
 - Complexity analysis
 
-#### `/miz career prep <company> system-design`
+#### `/suki career prep <company> system-design`
 
 System design interview practice.
 
@@ -166,7 +166,7 @@ Features:
 
 ### Learning Commands
 
-#### `/miz career learn`
+#### `/suki career learn`
 
 Show skills dashboard with progress across all skills.
 
@@ -189,7 +189,7 @@ Read `agents/learn.md` and follow its instructions.
 ───────────────────────────────────────
 ```
 
-#### `/miz career learn <skill>`
+#### `/suki career learn <skill>`
 
 Practice a specific skill.
 
@@ -201,13 +201,13 @@ Features:
 - Spaced repetition scheduling
 - Identify and drill weak areas
 
-#### `/miz career learn <skill> --topic <topic>`
+#### `/suki career learn <skill> --topic <topic>`
 
 Focus on a specific topic within a skill.
 
-Example: `/miz career learn python --topic concurrency`
+Example: `/suki career learn python --topic concurrency`
 
-#### `/miz career learn <skill> --review`
+#### `/suki career learn <skill> --review`
 
 Review topics due for spaced repetition.
 
@@ -216,7 +216,7 @@ Prioritizes:
 2. Low confidence topics
 3. Low score topics
 
-#### `/miz career learn <skill> --assess`
+#### `/suki career learn <skill> --assess`
 
 Run a full assessment to establish baseline for a skill.
 
@@ -224,7 +224,7 @@ Run a full assessment to establish baseline for a skill.
 - Mix of difficulty levels
 - Creates initial progress profile
 
-#### `/miz career progress`
+#### `/suki career progress`
 
 Show overall learning progress across all skills.
 
@@ -249,7 +249,7 @@ Weak: databases, caching
 
 ### Fetch Commands
 
-#### `/miz career fetch leetcode`
+#### `/suki career fetch leetcode`
 
 Fetch LeetCode company-tagged questions from community GitHub repos.
 
@@ -265,18 +265,18 @@ Read `agents/add.md` and follow its instructions.
 | google | 892 | 892 |
 | meta | 756 | 756 |
 
-Saved to: ~/.miz/learning/community/leetcode/
+Saved to: ~/.suki/learning/community/leetcode/
 
 ───────────────────────────────────────
 ```
 
-#### `/miz career fetch leetcode --company <name>`
+#### `/suki career fetch leetcode --company <name>`
 
 Fetch questions for a specific company only.
 
-Example: `/miz career fetch leetcode --company stripe`
+Example: `/suki career fetch leetcode --company stripe`
 
-#### `/miz career fetch leetcode --list`
+#### `/suki career fetch leetcode --list`
 
 List all available companies in the source.
 
@@ -284,11 +284,11 @@ List all available companies in the source.
 
 ### Case Commands
 
-#### `/miz career case <job-id>`
+#### `/suki career case <job-id>`
 
 Build the strongest case for a job you want to apply to.
 
-**Prerequisites:** Job must exist in `~/.miz/activity/jobs/` with fit analysis completed.
+**Prerequisites:** Job must exist in `~/.suki/activity/jobs/` with fit analysis completed.
 
 Read `agents/analyze.md` and follow its instructions.
 
@@ -309,18 +309,18 @@ Which job? Enter the ID:
 ## Data Model
 
 ```
-~/.miz/profile/                      # MASTER PROFILE
+~/.suki/profile/                      # MASTER PROFILE
 ├── identity.json
 ├── experience.json
 ├── education.json
 ├── skills.json
 └── proof-points.json
 
-~/.miz/activity/
+~/.suki/activity/
 ├── tracker.md                # Applications tracker
 └── jobs/*.json               # Analyzed jobs
 
-~/.miz/interview/
+~/.suki/interview/
 ├── banks/                    # Generic question banks
 │   ├── behavioral.json
 │   ├── coding/
@@ -329,7 +329,7 @@ Which job? Enter the ID:
 └── sessions/                 # Practice history
     └── {company}-{date}-{type}.json
 
-~/.miz/learning/
+~/.suki/learning/
 ├── progress.json             # Overall progress
 ├── banks/                    # Question banks by skill
 │   ├── python/
@@ -339,7 +339,7 @@ Which job? Enter the ID:
     ├── progress.json
     └── sessions/
 
-~/.miz/sources/
+~/.suki/sources/
 └── resume/                   # User's resumes
 ```
 

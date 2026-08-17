@@ -1,11 +1,11 @@
-"""miz: single CLI for the miz stack.
+"""suki: single CLI for the suki stack.
 
 Usage:
-  miz                      install skills into agent dirs (auto-detect)
-  miz install [--opencode|--claude|--codex|--all]
-  miz topics [--verbose]   list topics under ~/.miz/topics/
-  miz status [topic] [--json|--due]
-  miz book <topic> [--paper a5|a4|letter] [--tex-only] [--keep-md]
+  suki                      install skills into agent dirs (auto-detect)
+  suki install [--opencode|--claude|--codex|--all]
+  suki topics [--verbose]   list topics under ~/.suki/topics/
+  suki status [topic] [--json|--due]
+  suki book <topic> [--paper a5|a4|letter] [--tex-only] [--keep-md]
 """
 import os
 import sys
@@ -15,9 +15,9 @@ from . import book as book_mod
 from . import status as status_mod
 from . import topics as topics_mod
 
-MIZ_HOME = Path(os.environ.get("MIZ_HOME", Path.home() / ".miz"))
+SUKI_HOME = Path(os.environ.get("SUKI_HOME", Path.home() / ".suki"))
 SKILLS = [
-    ("miz", "home"),
+    ("suki", "home"),
     ("career", "career"),
     ("curriculum", "curriculum"),
     ("learn", "learn"),
@@ -26,9 +26,9 @@ SKILLS = [
     ("resume", "resume"),
 ]
 OPENCODE_COMMAND = """---
-description: Miz - a stack for building and validating expertise. Router: /miz career <args>, /miz curriculum <topic>, /miz learn <draft>, /miz probe <topic> [ch], /miz book <topic>, /miz resume [improve|tailor <job>], or /miz alone for the status dashboard.
+description: Suki - a stack for building and validating expertise. Router: /suki career <args>, /suki curriculum <topic>, /suki learn <draft>, /suki probe <topic> [ch], /suki book <topic>, /suki resume [improve|tailor <job>], or /suki alone for the status dashboard.
 ---
-Follow the miz skill and route this subcommand: $ARGUMENTS
+Follow the suki skill and route this subcommand: $ARGUMENTS
 """
 
 
@@ -36,12 +36,12 @@ def skill_src_dir():
     """The directory holding the skill folders (installed package or repo)."""
     candidates = [
         Path(__file__).resolve().parent / "skills",
-        Path(__file__).resolve().parent.parent.parent,  # repo root (src/miz/cli.py -> miz/)
+        Path(__file__).resolve().parent.parent.parent,  # repo root (src/suki/cli.py -> suki/)
     ]
     for c in candidates:
         if (c / "home" / "SKILL.md").is_file():
             return c
-    raise FileNotFoundError("cannot locate the miz skills (expected a skills/ folder)")
+    raise FileNotFoundError("cannot locate the suki skills (expected a skills/ folder)")
 
 
 def install_to(dest):
@@ -78,8 +78,8 @@ def install_opencode_command(dest):
         if p.is_file():
             p.unlink()
             print(f"removed old command {p}")
-    (dest / "miz.md").write_text(OPENCODE_COMMAND)
-    print(f"wrote opencode command -> {dest / 'miz.md'}")
+    (dest / "suki.md").write_text(OPENCODE_COMMAND)
+    print(f"wrote opencode command -> {dest / 'suki.md'}")
 
 
 def cmd_install(argv):
@@ -110,8 +110,8 @@ def cmd_install(argv):
         if label == "opencode":
             install_opencode_command(targets[label] / "command")
 
-    MIZ_HOME.mkdir(parents=True, exist_ok=True)
-    print(f"state lives in {MIZ_HOME}/")
+    SUKI_HOME.mkdir(parents=True, exist_ok=True)
+    print(f"state lives in {SUKI_HOME}/")
     print(f"skills: {' '.join(name for name, _ in SKILLS)}")
     print("restart your agent to pick up the skills")
     return 0
@@ -130,7 +130,7 @@ def main(argv=None):
     if cmd == "book":
         return book_mod.main(rest)
     print(f"unknown subcommand: {cmd}")
-    print("usage: miz [install|topics|status|book]")
+    print("usage: suki [install|topics|status|book]")
     return 1
 
 

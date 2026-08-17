@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "miz"
+name = "suki"
 version = "0.1.0"
 description = "Build expertise. Validate it. Own it. A stack of AI-agent skills for learning and career."
 readme = "README.md"
@@ -18,23 +18,23 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/grandimam/miz"
-Repository = "https://github.com/grandimam/miz"
+Homepage = "https://github.com/grandimam/suki"
+Repository = "https://github.com/grandimam/suki"
 
 [project.scripts]
-miz = "miz.cli:main"
+suki = "suki.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/miz"]
+packages = ["src/suki"]
 
 [tool.hatch.build.targets.wheel.force-include]
-home = "miz/skills/home"
-career = "miz/skills/career"
-curriculum = "miz/skills/curriculum"
-learn = "miz/skills/learn"
-probe = "miz/skills/probe"
-book = "miz/skills/book"
-resume = "miz/skills/resume"
+home = "suki/skills/home"
+career = "suki/skills/career"
+curriculum = "suki/skills/curriculum"
+learn = "suki/skills/learn"
+probe = "suki/skills/probe"
+book = "suki/skills/book"
+resume = "suki/skills/resume"
 
 [tool.hatch.build.targets.sdist]
 include = [

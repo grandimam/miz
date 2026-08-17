@@ -1,13 +1,13 @@
-"""miz-book: assemble a miz topic into a publication-quality teaching book via pandoc + LaTeX.
+"""suki-book: assemble a suki topic into a publication-quality teaching book via pandoc + LaTeX.
 
 Usage:
-  miz-book python                 # build book.pdf + book.tex
-  miz-book python --paper a4      # a5 (default), a4, or letter
-  miz-book python --tex-only      # stop at book.tex, no PDF compile
-  miz-book python --keep-md       # keep the intermediate markdown
+  suki-book python                 # build book.pdf + book.tex
+  suki-book python --paper a4      # a5 (default), a4, or letter
+  suki-book python --tex-only      # stop at book.tex, no PDF compile
+  suki-book python --keep-md       # keep the intermediate markdown
 
 Reads curriculum.json, mastery.json, probes.jsonl, practice.jsonl from
-~/.miz/topics/<slug>/ and writes book/ inside the same directory.
+~/.suki/topics/<slug>/ and writes book/ inside the same directory.
 """
 import argparse
 import datetime as dt
@@ -17,7 +17,7 @@ import shutil
 import subprocess
 import sys
 
-MIZ_HOME = os.environ.get("MIZ_HOME", os.path.expanduser("~/.miz"))
+SUKI_HOME = os.environ.get("SUKI_HOME", os.path.expanduser("~/.suki"))
 HERE = os.path.dirname(os.path.realpath(__file__))
 
 STATUS_LABEL = {
@@ -360,7 +360,7 @@ def pandoc_latex_fragment(markdown_text):
 
 def main(argv=None):
     argv = argv if argv is not None else sys.argv[1:]
-    ap = argparse.ArgumentParser(description="Render a miz topic as a LaTeX book.")
+    ap = argparse.ArgumentParser(description="Render a suki topic as a LaTeX book.")
     ap.add_argument("slug")
     ap.add_argument("--paper", choices=sorted(GEOMETRY), default="a5")
     ap.add_argument("--tex-only", action="store_true", help="emit book.tex without compiling")
@@ -374,7 +374,7 @@ def main(argv=None):
     if not os.path.isfile(template):
         sys.exit(f"template not found: {template}")
 
-    topic_dir = os.path.join(MIZ_HOME, "topics", args.slug)
+    topic_dir = os.path.join(SUKI_HOME, "topics", args.slug)
     curriculum = load_json(os.path.join(topic_dir, "curriculum.json"))
     if not curriculum:
         sys.exit(f"NO_CURRICULUM: run the curriculum skill for {args.slug} first")

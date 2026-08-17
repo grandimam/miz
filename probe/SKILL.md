@@ -2,7 +2,7 @@
 name: probe
 description: |
   Build and verify the user's understanding of a topic chapter by chapter.
-  Loads the curriculum from ~/.miz/topics/<slug>/, forces the learner to
+  Loads the curriculum from ~/.suki/topics/<slug>/, forces the learner to
   state their current picture, probes it, repairs weak spots with targeted
   mini-drills, records results to probes.jsonl, and updates mastery.json. It
   may also persist the learner's working model to models.json/models.jsonl and
@@ -16,7 +16,7 @@ description: |
 
 ```bash
 TOPIC_SLUG="<slug from user message>"
-TOPIC_DIR="$HOME/.miz/topics/$TOPIC_SLUG"
+TOPIC_DIR="$HOME/.suki/topics/$TOPIC_SLUG"
 if [ ! -f "$TOPIC_DIR/curriculum.json" ]; then
   echo "NO_CURRICULUM: run curriculum for $TOPIC_SLUG first"
 else

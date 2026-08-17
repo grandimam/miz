@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Create a realistic fixture topic under $MIZ_HOME for testing.
-# Usage: MIZ_HOME=<dir> test/make_fixture.sh [slug]
+# Create a realistic fixture topic under $SUKI_HOME for testing.
+# Usage: SUKI_HOME=<dir> test/make_fixture.sh [slug]
 set -e
 SLUG="${1:-python}"
-[ -n "$MIZ_HOME" ] || { echo "set MIZ_HOME first" >&2; exit 1; }
-DIR="$MIZ_HOME/topics/$SLUG"
+[ -n "$SUKI_HOME" ] || { echo "set SUKI_HOME first" >&2; exit 1; }
+DIR="$SUKI_HOME/topics/$SLUG"
 mkdir -p "$DIR"
 
 cat > "$DIR/README.md" <<'EOF'

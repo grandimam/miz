@@ -8,14 +8,14 @@ description: |
   should I learn in X", or when the user wants a definitive guide, textbook,
   or reference manual for a topic.
   Writes chapter-by-chapter Markdown plus README.md, curriculum.json, and mastery.json to
-  ~/.miz/topics/<slug>/. Use before probe.
+  ~/.suki/topics/<slug>/. Use before probe.
 ---
 
 ## Preamble (run first)
 
 ```bash
-mkdir -p ~/.miz/topics
-echo "MIZ_HOME: $HOME/.miz"
+mkdir -p ~/.suki/topics
+echo "SUKI_HOME: $HOME/.suki"
 ```
 
 # Curriculum Author
@@ -74,7 +74,7 @@ Slug the topic using lowercase words joined by hyphens:
 
 ```bash
 TOPIC_SLUG="<slug>"
-TOPIC_DIR="$HOME/.miz/topics/$TOPIC_SLUG"
+TOPIC_DIR="$HOME/.suki/topics/$TOPIC_SLUG"
 mkdir -p "$TOPIC_DIR"
 ls "$TOPIC_DIR" 2>/dev/null
 ```

@@ -20,4 +20,4 @@ book/*.pdf
 book/*.tex
 
 # Local state (never commit user data)
-.miz/
+.suki/

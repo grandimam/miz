@@ -3,7 +3,7 @@ name: book
 description: |
   Render a topic's curriculum, working models, and probe/remediation records as a
   publication-quality teaching book via pandoc. Produces book.pdf (and
-  book.tex) in ~/.miz/topics/<slug>/book/ - KOMA scrbook, XeLaTeX,
+  book.tex) in ~/.suki/topics/<slug>/book/ - KOMA scrbook, XeLaTeX,
   microtype, Palatino-class typography, table of contents, one part per tier,
   and reusable chapter material for other learners. Use when asked to "make a
   book", "export my curriculum as a book/PDF", "turn this into a study guide",
@@ -14,7 +14,7 @@ description: |
 
 ```bash
 TOPIC_SLUG="<slug from user message>"
-TOPIC_DIR="$HOME/.miz/topics/$TOPIC_SLUG"
+TOPIC_DIR="$HOME/.suki/topics/$TOPIC_SLUG"
 if [ ! -f "$TOPIC_DIR/curriculum.json" ]; then
   echo "NO_CURRICULUM: run curriculum for $TOPIC_SLUG first"
 else
@@ -45,7 +45,7 @@ the curriculum or mastery.
 Run the assembler:
 
 ```bash
-miz book "$TOPIC_SLUG" --keep-md
+suki book "$TOPIC_SLUG" --keep-md
 ```
 
 It reads `curriculum.json`, `mastery.json`, `models.json`, `probes.jsonl`,
@@ -71,7 +71,7 @@ Print:
 
 1. The path to `book.pdf` (and `book.tex` if `--tex-only`).
 2. A one-line summary: number of tiers, chapters, mastered count.
-3. Where it lives: `$HOME/.miz/topics/<slug>/book/`.
+3. Where it lives: `$HOME/.suki/topics/<slug>/book/`.
 4. That the manuscript markdown is kept for inspection (`--keep-md` was passed)
    and can be removed safely.
 5. That the output is a reusable teaching book, not just a session log.

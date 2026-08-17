@@ -1,22 +1,22 @@
 ---
-name: miz
+name: suki
 description: |
-  Miz - a stack for building and validating expertise. The /miz command is the
-  single entry point and router. Subcommands: /miz career ... (profile,
-  job-fit analysis, interview prep, gap closing, tracking), /miz curriculum
-  <topic> to design a learning path, /miz learn <draft> to review material,
-  /miz probe <topic> to build + verify understanding, /miz book <topic> to
-  publish a teaching book, and /miz resume to audit, improve, or tailor the
-  resume. All state lives under ~/.miz/. Use /miz with no subcommand for the
+  Suki - a stack for building and validating expertise. The /suki command is the
+  single entry point and router. Subcommands: /suki career ... (profile,
+  job-fit analysis, interview prep, gap closing, tracking), /suki curriculum
+  <topic> to design a learning path, /suki learn <draft> to review material,
+  /suki probe <topic> to build + verify understanding, /suki book <topic> to
+  publish a teaching book, and /suki resume to audit, improve, or tailor the
+  resume. All state lives under ~/.suki/. Use /suki with no subcommand for the
   status dashboard.
 ---
 
-# Miz
+# Suki
 
 > Build expertise. Validate it. Own it.
 
-The single entry point and router for the miz stack: career tools plus a
-personal learning engine, all under `~/.miz/`.
+The single entry point and router for the suki stack: career tools plus a
+personal learning engine, all under `~/.suki/`.
 
 ## UX Guidelines
 
@@ -29,59 +29,59 @@ Always use rich formatting for a polished terminal experience:
 
 ## Commands
 
-### `/miz` (no args)
+### `/suki` (no args)
 
-Show the miz home page. On EVERY invocation, first check if
-`~/.miz/profile/identity.json` exists. There are two states: **first run**
+Show the suki home page. On EVERY invocation, first check if
+`~/.suki/profile/identity.json` exists. There are two states: **first run**
 (no profile) and **dashboard** (profile exists).
 
 #### State A — first run (no profile)
 
 ```
 ╭──────────────────────────────────────────╮
-│                  m i z                    │
+│                  s u k i                    │
 │   Build expertise. Validate it. Own it.  │
 ╰──────────────────────────────────────────╯
 
-Welcome to miz — your career, reflected honestly.
+Welcome to suki — your career, reflected honestly.
 
 ────────────────────────────────────────────
 🚀  Quick start
 ────────────────────────────────────────────
-  → /miz career init         Set up your career profile
-  → /miz curriculum <topic>  Start learning any topic
+  → /suki career init         Set up your career profile
+  → /suki curriculum <topic>  Start learning any topic
 
 ────────────────────────────────────────────
 🗺️  Commands
 ────────────────────────────────────────────
 
 CAREER — land the right role
-  /miz career               overview · jobs · prep · tracker
-  /miz career init          first-time setup
-  /miz career add job       analyze a job posting
-  /miz career add resume    add a resume
-  /miz career prep <co>     interview prep for a company
-  /miz career analyze <co>  honest fit analysis
-  /miz career learn <co>    close gaps + mock interviews
-  /miz career tracker       applications tracker
+  /suki career               overview · jobs · prep · tracker
+  /suki career init          first-time setup
+  /suki career add job       analyze a job posting
+  /suki career add resume    add a resume
+  /suki career prep <co>     interview prep for a company
+  /suki career analyze <co>  honest fit analysis
+  /suki career learn <co>    close gaps + mock interviews
+  /suki career tracker       applications tracker
 
 RESUME — present yourself
-  /miz resume               audit the resume against your profile
-  /miz resume improve       rewrite weak bullets
-  /miz resume tailor <job>  tailor to a specific job
+  /suki resume               audit the resume against your profile
+  /suki resume improve       rewrite weak bullets
+  /suki resume tailor <job>  tailor to a specific job
 
 LEARNING — build durable expertise
-  /miz curriculum <topic>   design a learning path
-  /miz probe <topic> [ch]   build + verify understanding
-  /miz learn <draft>        review material as a learner
-  /miz book <topic>         publish a teaching book
+  /suki curriculum <topic>   design a learning path
+  /suki probe <topic> [ch]   build + verify understanding
+  /suki learn <draft>        review material as a learner
+  /suki book <topic>         publish a teaching book
 ```
 
 #### State B — dashboard (profile exists)
 
 ```
 ╭──────────────────────────────────────────╮
-│                  m i z                    │
+│                  s u k i                    │
 │   Build expertise. Validate it. Own it.  │
 ╰──────────────────────────────────────────╯
 
@@ -106,49 +106,49 @@ LEARNING — build durable expertise
 ────────────────────────────────────────────
 
 CAREER — land the right role
-  /miz career               overview · jobs · prep · tracker
-  /miz career add job       analyze a job posting
-  /miz career prep <co>     interview prep for a company
-  /miz career learn <co>    close gaps + mock interviews
+  /suki career               overview · jobs · prep · tracker
+  /suki career add job       analyze a job posting
+  /suki career prep <co>     interview prep for a company
+  /suki career learn <co>    close gaps + mock interviews
 
 RESUME — present yourself
-  /miz resume               audit the resume against your profile
-  /miz resume improve       rewrite weak bullets
-  /miz resume tailor <job>  tailor to a specific job
+  /suki resume               audit the resume against your profile
+  /suki resume improve       rewrite weak bullets
+  /suki resume tailor <job>  tailor to a specific job
 
 LEARNING — build durable expertise
-  /miz probe <topic> [ch]   continue learning
-  /miz curriculum <topic>   design a new path
-  /miz learn <draft>        review material as a learner
-  /miz book <topic>         publish a teaching book
+  /suki probe <topic> [ch]   continue learning
+  /suki curriculum <topic>   design a new path
+  /suki learn <draft>        review material as a learner
+  /suki book <topic>         publish a teaching book
 
 ────────────────────────────────────────────
 Next step
-  → /miz probe python 1.1   continue where you left off
+  → /suki probe python 1.1   continue where you left off
 ```
 
 Rules for State B:
 
-- **Status** — pull from `~/.miz/profile/`, `~/.miz/activity/`, and
-  `~/.miz/topics/*/mastery.json`. Prefer one-line summaries over separate
+- **Status** — pull from `~/.suki/profile/`, `~/.suki/activity/`, and
+  `~/.suki/topics/*/mastery.json`. Prefer one-line summaries over separate
   sections.
 - **Due for review** — list topics with `next_revisit_at` in the past,
   nearest due first. If nothing is due, drop the block entirely.
 - **Commands** — always render the full list from the routing table below.
 - **Next step** — the most valuable immediate action: the oldest due chapter,
   the next `in_progress`/`not_started` chapter of the most active topic, or
-  `/miz career` if the profile is new. If nothing stands out, drop it.
+  `/suki career` if the profile is new. If nothing stands out, drop it.
 
 If the profile exists but key status files are missing or empty, show `—`
 for those rows rather than a number.
 
-### `/miz status`
+### `/suki status`
 
-Same as `/miz` with no args.
+Same as `/suki` with no args.
 
 ## Subcommand Routing
 
-Parse the first word after `/miz` and route to the matching skill. Each
+Parse the first word after `/suki` and route to the matching skill. Each
 subcommand's instructions live in the corresponding skill; follow that skill
 for the remainder.
 
@@ -160,15 +160,15 @@ for the remainder.
 | `probe <topic> [ch]` | probe | Build + verify understanding, spaced repetition |
 | `book <topic>` | book | Render a topic as a teaching book |
 | `resume [improve\|tailor <job>]` | resume | Audit, improve, or tailor the resume |
-| *(no subcommand)* | miz | Status dashboard |
+| *(no subcommand)* | suki | Status dashboard |
 
 Routing rules:
 
-- `/miz career ...` → follow the `career` skill for everything after `career`,
-  e.g. `/miz career init`, `/miz career add job`, `/miz career prep <company>`.
-- `/miz curriculum <topic>` → follow the `curriculum` skill for the topic.
-- `/miz learn <draft>` → follow the `learn` skill for the draft.
-- `/miz probe <topic> [ch]` → follow the `probe` skill.
-- `/miz book <topic>` → follow the `book` skill.
-- `/miz resume [improve|tailor <job-id>]` → follow the `resume` skill.
+- `/suki career ...` → follow the `career` skill for everything after `career`,
+  e.g. `/suki career init`, `/suki career add job`, `/suki career prep <company>`.
+- `/suki curriculum <topic>` → follow the `curriculum` skill for the topic.
+- `/suki learn <draft>` → follow the `learn` skill for the draft.
+- `/suki probe <topic> [ch]` → follow the `probe` skill.
+- `/suki book <topic>` → follow the `book` skill.
+- `/suki resume [improve|tailor <job-id>]` → follow the `resume` skill.
 - Unknown or missing subcommand → show the status dashboard above.

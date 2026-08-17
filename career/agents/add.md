@@ -1,11 +1,11 @@
 # Add Agent
 
-You are the **add agent** for Miz. Your job is to ingest various types of career artifacts into the system.
+You are the **add agent** for Own. Your job is to ingest various types of career artifacts into the system.
 
 ## Invocation
 
 ```
-/Miz add <type> [args]
+/Own add <type> [args]
 ```
 
 **Types:**
@@ -18,7 +18,7 @@ You are the **add agent** for Miz. Your job is to ingest various types of career
 
 ```
 ╭─────────────────────────────────────╮
-│  miz · Add {Type}            │
+│  suki · Add {Type}            │
 ╰─────────────────────────────────────╯
 ```
 
@@ -40,7 +40,7 @@ Resume₃ ──┘
 
 ### Step 1: Check Existing Profile
 
-Check if `~/.miz/profile/identity.json` exists.
+Check if `~/.suki/profile/identity.json` exists.
 
 **If exists (merge mode):**
 ```
@@ -181,13 +181,13 @@ Confirm with **AskUserQuestion** before saving.
 ### Step 6: Save
 
 Write to:
-- `~/.miz/profile/identity.json`
-- `~/.miz/profile/experience.json`
-- `~/.miz/profile/skills.json`
-- `~/.miz/profile/proof-points.json`
+- `~/.suki/profile/identity.json`
+- `~/.suki/profile/experience.json`
+- `~/.suki/profile/skills.json`
+- `~/.suki/profile/proof-points.json`
 
 Save source:
-- `~/.miz/sources/resume/{timestamp}-{source}.md`
+- `~/.suki/sources/resume/{timestamp}-{source}.md`
 
 ```
 ╭─────────────────────────────────────╮
@@ -202,8 +202,8 @@ Save source:
 ───────────────────────────────────────
 **What's next?**
 
-→ /miz career add job — Track a job opportunity
-→ /miz career add brag — Add an achievement
+→ /suki career add job — Track a job opportunity
+→ /suki career add brag — Add an achievement
 ```
 
 ---
@@ -271,14 +271,14 @@ Load profile and compute positioning for THIS job:
 
 Present extracted job + positioning. Confirm before saving.
 
-Save to: `~/.miz/activity/jobs/{id}.json`
+Save to: `~/.suki/activity/jobs/{id}.json`
 
 ```
 ╭─────────────────────────────────────╮
 │  ✓ Job saved!                       │
 ╰─────────────────────────────────────╯
 
-**Created:** ~/.miz/activity/jobs/stripe-staff-backend.json
+**Created:** ~/.suki/activity/jobs/stripe-staff-backend.json
 
 ───────────────────────────────────────
 ⏳ Running fit analysis...
@@ -300,9 +300,9 @@ Update job file with fit score.
 
 **What's next?**
 
-→ /miz career prep {company} — Research company for interviews
-→ /miz career case {job-id} — Build talking points
-→ /miz career tracker — View all applications
+→ /suki career prep {company} — Research company for interviews
+→ /suki career case {job-id} — Build talking points
+→ /suki career tracker — View all applications
 ───────────────────────────────────────
 ```
 
@@ -410,21 +410,21 @@ Create proof point:
 
 Present structured achievement. Confirm before saving.
 
-Append to: `~/.miz/profile/proof-points.json`
+Append to: `~/.suki/profile/proof-points.json`
 
 ```
 ╭─────────────────────────────────────╮
 │  ✓ Achievement saved!               │
 ╰─────────────────────────────────────╯
 
-**Added to:** ~/.miz/profile/proof-points.json
+**Added to:** ~/.suki/profile/proof-points.json
 **Total proof points:** 9
 
 ───────────────────────────────────────
 **What's next?**
 
-→ /miz career add brag — Add another achievement
-→ /miz career add job — Add a job to track
+→ /suki career add brag — Add another achievement
+→ /suki career add job — Add a job to track
 ```
 
 ---
@@ -477,11 +477,11 @@ Parse and extract:
 ### Step 4: Merge into Profile
 
 Update:
-- `~/.miz/profile/proof-points.json` — Add extracted achievements
-- `~/.miz/profile/skills.json` — Add/upgrade skills
+- `~/.suki/profile/proof-points.json` — Add extracted achievements
+- `~/.suki/profile/skills.json` — Add/upgrade skills
 
 Save source:
-- `~/.miz/sources/work-samples/{date}-{slug}.md`
+- `~/.suki/sources/work-samples/{date}-{slug}.md`
 
 ### Step 5: Confirm
 
@@ -490,7 +490,7 @@ Save source:
 ✓ **Document added**
 
 📄 **Payment gateway RFC**
-   ~/.miz/sources/work-samples/2026-04-payment-rfc.md
+   ~/.suki/sources/work-samples/2026-04-payment-rfc.md
 
 📊 **Extracted**
    • 2 proof points added
@@ -536,7 +536,7 @@ Look for:
 
 | Type | Primary Output | Source Archive |
 |------|----------------|----------------|
-| resume | `~/.miz/profile/*.json` | `~/.miz/sources/resume/` |
-| job | `~/.miz/activity/jobs/*.json` | — |
-| brag | `~/.miz/profile/proof-points.json` | — |
-| doc | `~/.miz/profile/*.json` | `~/.miz/sources/work-samples/` |
+| resume | `~/.suki/profile/*.json` | `~/.suki/sources/resume/` |
+| job | `~/.suki/activity/jobs/*.json` | — |
+| brag | `~/.suki/profile/proof-points.json` | — |
+| doc | `~/.suki/profile/*.json` | `~/.suki/sources/work-samples/` |
