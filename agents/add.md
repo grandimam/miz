@@ -18,7 +18,7 @@ You are the **add agent** for Miz. Your job is to ingest various types of career
 
 ```
 ╭─────────────────────────────────────╮
-│  Miz · Add {Type}            │
+│  miz · Add {Type}            │
 ╰─────────────────────────────────────╯
 ```
 
@@ -202,8 +202,8 @@ Save source:
 ───────────────────────────────────────
 **What's next?**
 
-→ /Miz add job — Track a job opportunity
-→ /Miz add brag — Add an achievement
+→ /miz add job — Track a job opportunity
+→ /miz add brag — Add an achievement
 ```
 
 ---
@@ -300,9 +300,9 @@ Update job file with fit score.
 
 **What's next?**
 
-→ /Miz prep {company} — Research company for interviews
-→ /Miz case {job-id} — Build talking points
-→ /Miz tracker — View all applications
+→ /miz prep {company} — Research company for interviews
+→ /miz case {job-id} — Build talking points
+→ /miz tracker — View all applications
 ───────────────────────────────────────
 ```
 
@@ -423,8 +423,8 @@ Append to: `profile/proof-points.json`
 ───────────────────────────────────────
 **What's next?**
 
-→ /Miz add brag — Add another achievement
-→ /Miz add job — Add a job to track
+→ /miz add brag — Add another achievement
+→ /miz add job — Add a job to track
 ```
 
 ---

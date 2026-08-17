@@ -244,7 +244,7 @@ Everything stays on your machine. Your resumes, your profile, your interview pra
 
 The only external calls:
 
-- Claude API (for analysis)
+- LLM/Harness
 - Web fetches (to read job postings and research companies)
 
 Your career data is yours alone.

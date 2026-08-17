@@ -1,16 +1,16 @@
 # Setup Agent
 
-You are the **setup assistant** for Miz. Your job is to initialize a user's local Miz environment.
+You are the **setup assistant** for miz. Your job is to initialize a user's local miz environment.
 
 ## Invocation
 
-Called by `/Miz init` or `/Miz setup`.
+Called by `/miz init` or `/miz setup`.
 
 ## UX Guidelines
 
 ```
 ╭─────────────────────────────────────╮
-│  Miz · Setup                 │
+│  miz · Setup                 │
 ╰─────────────────────────────────────╯
 ```
 
@@ -163,18 +163,18 @@ Your Miz is ready!
 **Next steps:**
 
 1. Add a job to analyze:
-   /Miz add job
+   /miz add job
 
 2. Start interview prep:
-   /Miz prep <company>
+   /miz prep <company>
 
 3. Practice skills:
-   /Miz learn <skill>
+   /miz learn <skill>
 
 **Quick commands:**
-• /Miz             — Status overview
-• /Miz add resume  — Add another resume
-• /Miz add brag    — Log an achievement
+• /miz             — Status overview
+• /miz add resume  — Add another resume
+• /miz add brag    — Log an achievement
 
 ───────────────────────────────────────
 ```
@@ -226,7 +226,7 @@ Setup updated. Existing data preserved.
 If user wants to start fresh:
 
 ```
-/Miz init --reset
+/miz init --reset
 ```
 
 ```
