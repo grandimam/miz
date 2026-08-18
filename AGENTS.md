@@ -1,6 +1,6 @@
 # Suki (working instructions)
 
-> Build expertise. Validate it. Own it.
+> Build the curriculum. Probe it progressively.
 
 This file is for AI agents working **on this repo** (the suki source), not for
 users of the tool. Users read `README.md`; agents read this. If the two

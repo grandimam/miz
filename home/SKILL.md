@@ -33,10 +33,10 @@ Show the suki home page. On EVERY invocation, first check if
 #### State A — first run (no profile)
 
 ```
-╭──────────────────────────────────────────╮
-│                  s u k i                 │
-│   Build expertise. Validate it. Own it.  │
-╰──────────────────────────────────────────╯
+╭───────────────────────────────────────────────╮
+│                    s u k i                    │
+│ Build the curriculum. Probe it progressively. │
+╰───────────────────────────────────────────────╯
 
 Welcome to suki — your career, reflected honestly.
 
@@ -75,10 +75,10 @@ LEARNING — build durable expertise
 #### State B — dashboard (profile exists)
 
 ```
-╭──────────────────────────────────────────╮
-│                  s u k i                    │
-│   Build expertise. Validate it. Own it.  │
-╰──────────────────────────────────────────╯
+╭───────────────────────────────────────────────╮
+│                    s u k i                    │
+│ Build the curriculum. Probe it progressively. │
+╰───────────────────────────────────────────────╯
 
 **{Name}** · {Current Role} at {Company} · {Location}
 

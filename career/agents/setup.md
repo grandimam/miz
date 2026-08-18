@@ -22,7 +22,7 @@ Called by `/suki career init` or `/suki career setup`.
 ───────────────────────────────────────
 🚀 **Welcome to Suki**
 
-Build expertise. Validate it. Own it.
+Build the curriculum. Probe it progressively.
 
 I'll set up your local environment and help you
 build your profile.

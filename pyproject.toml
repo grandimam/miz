@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "suki"
 version = "0.1.0"
-description = "Build expertise. Validate it. Own it. A stack of AI-agent skills for learning and career."
+description = "Build the curriculum. Probe it progressively. A stack of AI-agent skills for learning and career."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }

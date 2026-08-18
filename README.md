@@ -1,73 +1,93 @@
 # Suki
 
-> Build expertise. Validate it. Own it.
+**Build the curriculum. Probe it progressively.**
 
 ```
-╭────────────────────────────────────────────╮
-│                  s u k i                   │
-│   Build expertise. Validate it. Own it.    │
-╰────────────────────────────────────────────╯
+╭───────────────────────────────────────────────╮
+│                    s u k i                    │
+│ Build the curriculum. Probe it progressively. │
+╰───────────────────────────────────────────────╯
 ```
 
 Suki turns an AI coding agent into a learning partner that doesn't trust
 you. Not in a moral sense. It refuses to believe you know something just
 because you read it, watched a course, or nodded along with a tutorial.
 
-Learning isn't consuming content. It's being forced to say it back, from
-your own head, until it holds. Suki makes you do that, then it remembers
-what you're weak at and brings it back before it fades.
+The pattern is simple: **you build the curriculum, then the agent probes you
+on it, progressively.** First you design the definitive guide to a topic,
+chapter by chapter. Then you work through it, and the agent forces you to say
+each chapter back from your own head, pokes at the cracks, repairs them on the
+spot, and schedules re-probes before what you learned fades. Each pass builds
+on the last. Nothing is graded against you; everything is recorded as an
+artifact that compounds.
 
-**🔒 Local-first** · **🛡️ Private by default** · **🧩 3 steps, one command** · **🐍 Python 3 + your agent**
+**🔒 Local-first** · **🛡️ Private by default** · **🧩 2 steps, one command** · **🐍 Python 3 + your agent**
 
-## The loop: curriculum → probe → book
+## The loop: build it, then get probed on it
 
 ```
-        ┌──────────────────────────────────────────────┐
-        │                                              │
-        ▼                                              │
-   ┌──────────┐     ┌──────────┐     ┌──────────┐      │
-   │ curriculum│ ──► │  probe   │ ──► │   book   │      │
-   │ build the │     │  test it │     │ publish  │──────┘
-   │  path     │     │  & fix   │     │   it     │
-   └──────────┘     └──────────┘     └──────────┘
+   /suki curriculum <topic>        /suki probe <topic> [ch]
+   ┌──────────────┐               ┌──────────────┐
+   │  design the  │ ─────────────►│  say it back │──────────┐
+   │  definitive  │   chapter by  │  probe the   │          │
+   │  guide       │   chapter     │  cracks      │          │
+   └──────────────┘               └──────────────┘          │
+        ▲                                                   │
+        │              /suki probe <topic> 1.1            next
+        └────────────  again when it's due                  │
+                       (3 → 10 → 30 → 90 days)              ▼
+                                                     ┌──────────────┐
+                                                     │   mastered   │
+                                                     └──────────────┘
 ```
 
-- **`/suki curriculum <topic>`** — design the definitive learning path: the
-  chapters, the order, what "mastered" means for your topic.
-- **`/suki probe <topic> [ch]`** — build and verify understanding chapter by
-  chapter. Force a restatement, test it, repair the cracks, then schedule
-  reviews so it doesn't rot.
-- **`/suki book <topic>`** — render your curriculum, working models, and
-  probe history into a publication-quality teaching book.
+- **`/suki curriculum <topic>`**: design the definitive learning path: the
+  parts, the chapters, the order, what "mastered" means at every chapter. The
+  agent authors it like a field expert writing a real guide, from absolute
+  basics to the deepest expert end of the topic, then writes it as
+  chapter-by-chapter markdown plus a `curriculum.json` every later step reads.
+- **`/suki probe <topic> [ch]`**: build and verify understanding chapter by
+  chapter. The agent forces a restatement of *your* picture, probes it for
+  cracks, and grades it honestly. Weak spots are repaired inline with
+  targeted mini-drills, then the chapter is scored and scheduled for review
+  at 3 → 10 → 30 → 90 days so it doesn't rot.
 
-Work compounds: each step writes an artifact to `~/.suki/topics/<slug>/`
-that the next step reads. Probe again next week, and the book reflects it.
+Work compounds: each step writes an artifact to `~/.suki/topics/<slug>/` that
+the next step reads. Probe again next week, and the loop knows exactly what
+you were weak at and brings it back before it fades.
 
-## 📐 Build a curriculum
+## 📐 Step 1: Build the curriculum
 
 ```
 /suki curriculum active-directory
 
-  → tier 1:  The basics (what AD is, how a domain works)
-  → tier 2:  Core mechanics (Kerberos, tickets, trusts)
-  → tier 3:  Attacks (Kerberoasting, golden tickets, delegation)
-  → tier 4:  Defenses + detection
-  → tier 5:  Expert edge (red-team tradecraft, real-world ops)
+  → the agent designs the whole book first
+      · the thesis: what the field is fundamentally about
+      · the ontology: the entities and forces that organize it
+      · the recurring ideas that unify distant chapters
+      · what "expert" actually means at the deep end
 
-  + what "mastered" means at every chapter
-  + the order that actually builds understanding
+  → table of contents: parts → chapters → estimated hours
+  → then it authors each chapter like a definitive guide:
+      · real mechanisms, worked examples, failure modes
+      · drills that make you do, not just read
+      · mastery_check questions probe will use later
+
+  → you confirm the TOC, the agent writes in order
 ```
 
-Suki designs the path from absolute basics to the deepest expert end of the
-field, then writes it as chapter-by-chapter markdown plus a
-`curriculum.json` that every later step reads.
+Suki doesn't hand you a syllabus. It writes a guide that compresses the field
+into a coherent way of seeing, the kind of book that takes a complete
+beginner all the way to expert judgment, and stays useful as a reference after
+you've mastered it. Every chapter carries its own drills and mastery checks,
+so the next step has something real to test you on.
 
 | Command | What it does |
 |---------|--------------|
-| `/suki curriculum <topic>` | Design a definitive learning path: chapters, order, mastery checks |
-| `/suki learn <draft>` | Review a chapter draft from a serious learner's perspective |
+| `/suki curriculum <topic>` | Design a definitive learning path: parts, chapters, order, mastery checks |
+| `/suki learn <draft>` | Review a chapter draft from a serious learner's perspective (runs inside curriculum) |
 
-## 🔬 Probe your understanding
+## 🔬 Step 2: Get probed, progressively
 
 ```
 /suki probe active-directory 1.1
@@ -75,21 +95,25 @@ field, then writes it as chapter-by-chapter markdown plus a
   "Explain Kerberos authentication in your own words."
 
   → you state your picture
-  → suki probes it for cracks
-  → weak spot? a targeted drill fixes it right there
+  → suki probes it, one question at a time
+      SOLID    correct, with reasoning
+      SHALLOW  right words, no understanding  → one targeted follow-up
+      WRONG    incorrect or "I don't know"    → repair inline
+  → weak spot? a mini-drill fixes it right there
   → mastered? revisit in 3 → 10 → 30 → 90 days
 ```
 
-The model has to be in **your** words, not the book's. If it doesn't hold
-up, the gap is exposed and repaired inline. What you're weak at is
-remembered and resurfaced before it fades. Nothing is graded against you;
-everything is recorded as an artifact that compounds.
+The model has to be in **your** words, not the book's. The agent never writes
+the answer for you: it forces a restatement, scores it honestly, and if it
+doesn't hold up, exposes the gap and repairs it right there. Your weak spots
+are remembered and resurfaced before they fade. Mastered chapters stay on the
+revisit schedule; everything else comes back for another round.
 
 | Command | What it does |
 |---------|--------------|
 | `/suki probe <topic> [ch]` | Build + verify understanding chapter by chapter; repair cracks; spaced repetition |
 
-## 📖 Create a book
+## 📖 The payoff: a book you can prove you hold
 
 ```
 /suki book active-directory     # -> ~/.suki/topics/active-directory/book/book.pdf
@@ -113,10 +137,10 @@ One command, `/suki`, is the status dashboard and the router to everything
 else. It knows where you left off and what's due next.
 
 ```
-╭──────────────────────────────────────────╮
-│                  s u k i                    │
-│   Build expertise. Validate it. Own it.  │
-╰──────────────────────────────────────────╯
+╭───────────────────────────────────────────────╮
+│                    s u k i                    │
+│ Build the curriculum. Probe it progressively. │
+╰───────────────────────────────────────────────╯
 
 📊  Status
 ────────────────────────────────────────────
@@ -142,8 +166,9 @@ suki install --all     # links the skills into opencode, claude, and codex
 That's it. Restart your agent, then:
 
 ```bash
-/suki curriculum python    # build the path
-/suki probe python 1.1     # build + verify understanding
+/suki curriculum python    # build the definitive guide
+/suki probe python 1.1     # say it back, get probed, repair, schedule
+/suki probe python 1.1     # again when it's due: the loop, forever
 /suki book python          # publish what you mastered
 ```
 
@@ -170,10 +195,10 @@ arc of your learning is recoverable.
 
 The `suki` CLI manages the stack:
 
-- `suki install [--opencode|--claude|--codex|--all]` — link skills into your agent
-- `suki topics` — list topics
-- `suki status [topic]` — progress + spaced-repetition due status
-- `suki book <topic>` — render a topic as a book
+- `suki install [--opencode|--claude|--codex|--all]`: link skills into your agent
+- `suki topics`: list topics
+- `suki status [topic]`: progress + spaced-repetition due status
+- `suki book <topic>`: render a topic as a book
 
 ## 📦 Install
 
