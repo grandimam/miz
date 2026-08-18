@@ -5,6 +5,7 @@ Usage:
   suki-book python --paper a4      # a5 (default), a4, or letter
   suki-book python --tex-only      # stop at book.tex, no PDF compile
   suki-book python --keep-md       # keep the intermediate markdown
+  suki-book python --preview 1     # render one tier only (fast preview)
 
 Reads curriculum.json, mastery.json, probes.jsonl, practice.jsonl from
 ~/.suki/topics/<slug>/ and writes book/ inside the same directory.
@@ -366,6 +367,7 @@ def main(argv=None):
     ap.add_argument("--tex-only", action="store_true", help="emit book.tex without compiling")
     ap.add_argument("--keep-md", action="store_true", help="keep intermediate markdown")
     ap.add_argument("--engine", default=os.environ.get("QALAM_PDF_ENGINE", "xelatex"))
+    ap.add_argument("--preview", type=str, default=None, help="render only one tier (e.g. 1)")
     args = ap.parse_args(argv)
 
     if not shutil.which("pandoc"):
@@ -382,6 +384,16 @@ def main(argv=None):
     models = load_json(os.path.join(topic_dir, "models.json")) or {}
     probes = load_jsonl(os.path.join(topic_dir, "probes.jsonl"))
     practices = load_jsonl(os.path.join(topic_dir, "practice.jsonl"))
+
+    if args.preview is not None:
+        tiers = curriculum.get("tiers", [])
+        wanted = args.preview if isinstance(args.preview, int) else args.preview
+        matched = [t for t in tiers if str(t.get("tier")) == str(wanted)]
+        if not matched:
+            available = ", ".join(str(t.get("tier")) for t in tiers) or "(none)"
+            sys.exit(f"no tier {wanted} (available: {available})")
+        curriculum = dict(curriculum)
+        curriculum["tiers"] = matched
 
     out_dir = os.path.join(topic_dir, "book")
     os.makedirs(out_dir, exist_ok=True)
@@ -425,6 +437,9 @@ def main(argv=None):
     ]
     for g in GEOMETRY[args.paper]:
         common += ["-V", f"geometry={g}"]
+
+    if args.preview is not None:
+        common += ["-M", "subtitle=Preview \u2014 Structured Guide and Practice Manual"]
 
     tex_path = os.path.join(out_dir, "book.tex")
     run_pandoc(common + ["-s", "-o", tex_path])

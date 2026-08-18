@@ -88,6 +88,29 @@ if useful, save back to `models.json`.
 
 ---
 
+## Phase 2b: Quick recall mode (for due reviews only)
+
+When this session is a **revisit** (the chapter was already `mastered` and is
+now due per `next_revisit_at`), offer a quick-recall pass first:
+
+1. Ask the learner to rate confidence before anything else: "Before we start,
+   how confident are you in this chapter, 1 (fuzzy) to 3 (solid)?"
+2. Run exactly **3 rapid questions** drawn from the mastery_check and the
+   saved model, one at a time. Keep them pointed and fast.
+3. Grade each as SOLID / SHALLOW / WRONG (as below).
+4. Verdict:
+   - 3 SOLID (or 2 SOLID + 1 SHALLOW recovered): treat as `mastered`, record
+     the session, advance the revisit schedule normally. Done - do not run the
+     full probe.
+   - otherwise: fall through to the full probe below to repair what's weak.
+
+The point of quick recall is to keep scheduled reviews genuinely quick. Only
+go deep when the fast pass actually fails. The revisit schedule itself is
+unchanged (3 -> 10 -> 30 -> 90 -> 180); you never skip a step or invent a new
+interval.
+
+---
+
 ## Phase 3: Progressive questioning
 
 Draw questions from two sources, interleaved:
@@ -99,19 +122,25 @@ Draw questions from two sources, interleaved:
 For each question:
 
 1. Ask the question. Wait for the answer. Never batch questions.
-2. Score the answer honestly:
+2. Ask the learner to rate their own confidence in the answer, 1-3 (fuzzy,
+   fairly sure, certain) - one tap, not an essay. Record it.
+3. Score the answer honestly:
    - **SOLID** - correct, with reasoning or an example
    - **SHALLOW** - right words, no understanding (ask one follow-up to confirm)
    - **WRONG** - incorrect or "I don't know"
-3. On SHALLOW or WRONG: ask exactly one targeted follow-up that exposes the
+4. Watch for calibration gaps: confident-but-WRONG is worth noting and
+   repairing more than a hesitant miss. The repair for a confident wrong
+   answer is a contrast question that makes the learner see the error, not
+   just the correct fact.
+5. On SHALLOW or WRONG: ask exactly one targeted follow-up that exposes the
    gap.
-4. If the issue is a small, fixable gap, immediately run one short repair:
+6. If the issue is a small, fixable gap, immediately run one short repair:
    - a contrast question
    - a mini drill
    - a prediction on a nearby example
    - a "say it back in your own words" correction
-5. Then give the correct understanding in 2-4 sentences - no longer.
-6. Adapt: if the first two answers are SOLID, skip ahead to the hardest
+7. Then give the correct understanding in 2-4 sentences - no longer.
+8. Adapt: if the first two answers are SOLID, skip ahead to the hardest
    mastery_check question. If two are WRONG, stop early - the chapter is not
    ready.
 
@@ -128,8 +157,12 @@ user explicitly asks. The default behavior is diagnose and repair inline.
 Append one JSON line per probe session to `$TOPIC_DIR/probes.jsonl`:
 
 ```json
-{"at": "<ISO 8601>", "chapter": "2.3", "results": [{"q": "...", "verdict": "SOLID|SHALLOW|WRONG", "note": "..."}], "outcome": "mastered|in_progress|not_ready", "remediation": ["..."]}
+{"at": "<ISO 8601>", "chapter": "2.3", "results": [{"q": "...", "confidence": 2, "verdict": "SOLID|SHALLOW|WRONG", "note": "..."}], "outcome": "mastered|in_progress|not_ready", "remediation": ["..."]}
 ```
+
+Every result carries the learner's stated `confidence` (1-3) when collected.
+Keep `q`, `verdict`, and `note` as before. If the learner rates the session at
+the end (see Phase 4b), also include a `feedback` object.
 
 Update `mastery.json` for the chapter:
 
@@ -182,17 +215,35 @@ The `mastery.json` entry may therefore include:
 
 ---
 
+## Phase 4b: Session feedback
+
+After recording, ask the learner to rate the session in one short line - e.g.
+"Too easy / about right / too hard / drills were confusing". This is feedback
+on the tool, not on the learner's performance. Record it in the same
+`probes.jsonl` line as a `feedback` object:
+
+```json
+{"at": "<ISO 8601>", "chapter": "2.3", "results": [...], "outcome": "mastered", "feedback": {"rating": "about right", "note": "contrast question on delegation helped"}}
+```
+
+If the learner calls a drill too easy or too hard, note it in `remediation`
+targets too so the next session can adapt. Never let the rating change the
+chapter's score - it only tunes how you probe next time.
+
+---
+
 ## Phase 5: Verdict
 
 Print:
 
-1. Per-question verdicts, one line each.
+1. Per-question verdicts, one line each (include the learner's stated
+   confidence so calibration gaps stay visible).
 2. The chapter's new status and score.
 3. Gaps found - the specific concepts to work on, each with one concrete
-   next action or mini drill.
+   next action or mini drill. Flag any confident-wrong answers specifically.
 4. The updated model in plain language, if it changed.
 5. Next step:
    - not mastered → `run probe on <topic> chapter <id>` again after reflection
      or more work
    - mastered → move to chapter `<next id>` and return on or after
-     `next_revisit_at`
+     `next_revisit_at`; that return will use quick-recall mode first

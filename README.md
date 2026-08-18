@@ -166,6 +166,7 @@ suki install --all     # links the skills into opencode, claude, and codex
 That's it. Restart your agent, then:
 
 ```bash
+suki demo                  # optional: feel the loop on a sample topic first
 /suki curriculum python    # build the definitive guide
 /suki probe python 1.1     # say it back, get probed, repair, schedule
 /suki probe python 1.1     # again when it's due: the loop, forever
@@ -197,8 +198,12 @@ The `suki` CLI manages the stack:
 
 - `suki install [--opencode|--claude|--codex|--all]`: link skills into your agent
 - `suki topics`: list topics
-- `suki status [topic]`: progress + spaced-repetition due status
-- `suki book <topic>`: render a topic as a book
+- `suki status [topic]`: progress bars + spaced-repetition due status (+ `--due`, `--json`, `--color`)
+- `suki map <topic>`: render the whole guide as a status tree
+- `suki demo [--force]`: seed a sample topic and feel the loop in 60 seconds
+- `suki export` / `suki import <file>`: back up or restore `~/.suki` (import never clobbers)
+- `suki focus [learning|career|all]`: choose what the dashboard leads with
+- `suki book <topic>`: render a topic as a book (+ `--preview <tier>` for a fast single-tier draft)
 
 ## 📦 Install
 

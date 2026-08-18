@@ -26,9 +26,13 @@ suki/                            # this repo (source of the skills)
 ├── book/                       # learning: render a topic as a book
 ├── resume/                     # career: audit/improve/tailor the resume
 ├── src/suki/                    # Python package (the pip-installable `suki` CLI)
-│   ├── cli.py                  #   installer + CLI router (install/topics/status/book)
-│   ├── topics.py / status.py   #   suki topics, suki status
-│   └── book.py                 #   suki book
+│   ├── cli.py                  #   installer + CLI router (install/topics/status/map/demo/export/import/focus/book)
+│   ├── topics.py / status.py   #   suki topics, suki status (bars, colors, streak)
+│   ├── map.py                  #   suki map (guide-as-status-tree)
+│   ├── demo.py                 #   suki demo (seed a sample topic)
+│   ├── export.py               #   suki export / import (backup, never clobbers)
+│   ├── focus.py                #   suki focus (dashboard focus preference)
+│   └── book.py                 #   suki book (incl. --preview)
 ├── pyproject.toml              # pip packaging (bundles skill dirs via force-include)
 ├── test/                       # test harness (run: bash test/run.sh)
 ├── README.md                   # user-facing documentation

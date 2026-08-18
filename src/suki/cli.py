@@ -4,14 +4,23 @@ Usage:
   suki                      install skills into agent dirs (auto-detect)
   suki install [--opencode|--claude|--codex|--all]
   suki topics [--verbose]   list topics under ~/.suki/topics/
-  suki status [topic] [--json|--due]
-  suki book <topic> [--paper a5|a4|letter] [--tex-only] [--keep-md]
+  suki status [topic] [--json|--due] [--color auto|always|never]
+  suki map <topic>          render a topic as a status tree
+  suki demo [--force]       seed a sample topic to try the loop
+  suki export [dest.tgz]    back up ~/.suki state
+  suki import <file.tgz>    merge a backup back into state
+  suki focus [learning|career|all]
+  suki book <topic> [--paper a5|a4|letter] [--tex-only] [--keep-md] [--preview <tier>]
 """
 import os
 import sys
 from pathlib import Path
 
 from . import book as book_mod
+from . import demo as demo_mod
+from . import export as export_mod
+from . import focus as focus_mod
+from . import map as map_mod
 from . import status as status_mod
 from . import topics as topics_mod
 
@@ -26,7 +35,7 @@ SKILLS = [
     ("resume", "resume"),
 ]
 OPENCODE_COMMAND = """---
-description: Suki - a stack for building and validating expertise. Router: /suki career <args>, /suki curriculum <topic>, /suki learn <draft>, /suki probe <topic> [ch], /suki book <topic>, /suki resume [improve|tailor <job>], or /suki alone for the status dashboard.
+description: Suki - a stack for building and validating expertise. Router: /suki career <args>, /suki curriculum <topic>, /suki learn <draft>, /suki probe <topic> [ch], /suki book <topic>, /suki resume [improve|tailor <job>], or /suki alone for the status dashboard. CLI extras: suki map <topic>, suki demo, suki export, suki import, suki focus.
 ---
 Follow the suki skill and route this subcommand: $ARGUMENTS
 """
@@ -127,10 +136,20 @@ def main(argv=None):
         return topics_mod.main(rest)
     if cmd == "status":
         return status_mod.main(rest)
+    if cmd == "map":
+        return map_mod.main(rest)
+    if cmd == "demo":
+        return demo_mod.main(rest)
+    if cmd == "export":
+        return export_mod.main(["export"] + rest)
+    if cmd == "import":
+        return export_mod.main(["import"] + rest)
+    if cmd == "focus":
+        return focus_mod.main(rest)
     if cmd == "book":
         return book_mod.main(rest)
     print(f"unknown subcommand: {cmd}")
-    print("usage: suki [install|topics|status|book]")
+    print("usage: suki [install|topics|status|map|demo|export|import|focus|book]")
     return 1
 
 

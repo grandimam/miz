@@ -55,11 +55,44 @@ progress=$(SUKI_HOME="$SUKI_HOME" PY status python 2>/dev/null | grep -o '[0-9.]
 echo "4. missing topic is a clean error"
 if SUKI_HOME="$SUKI_HOME" PY status nope >/tmp/qs.out 2>&1; [ $? -eq 1 ]; then ok "exit 1 for missing topic"; else bad "status missing topic"; fi
 
-echo "5. book renders to tex without a pdf engine needed (--tex-only)"
+echo "5. status --due lists reviews in aligned columns"
+due=$(SUKI_HOME="$SUKI_HOME" PY status --due 2>/dev/null)
+echo "$due" | grep -q 'python' && ok "suki status --due lists python" || bad "status --due no output"
+echo "$due" | grep -q $'\t' && bad "status --due still tab-separated" || ok "status --due uses aligned columns"
+
+echo "6. demo seeds a topic"
+SUKI_HOME="$SUKI_HOME" PY demo >/dev/null
+[ -f "$SUKI_HOME/topics/demo/curriculum.json" ] && ok "demo seeds curriculum.json" || bad "demo no curriculum.json"
+if SUKI_HOME="$SUKI_HOME" PY demo >/tmp/qdemo.out 2>&1; then bad "demo clobbered existing topic"; else ok "demo refuses to clobber"; fi
+
+echo "7. map renders the guide as a tree"
+mout=$(SUKI_HOME="$SUKI_HOME" PY map python 2>/dev/null)
+echo "$mout" | grep -q 'Tier 1' && ok "suki map shows Tier 1" || bad "suki map no tiers"
+echo "$mout" | grep -q '1.1' && ok "suki map shows chapter 1.1" || bad "suki map no chapters"
+
+echo "8. focus persists and reads back"
+SUKI_HOME="$SUKI_HOME" PY focus learning >/dev/null
+[ "$(SUKI_HOME="$SUKI_HOME" PY focus | grep -o 'learning')" = "learning" ] && ok "suki focus persists" || bad "suki focus no persist"
+
+echo "9. export/import round-trips without clobbering"
+EXP="$SUKI_HOME/backup.tgz"
+SUKI_HOME="$SUKI_HOME" PY export "$EXP" >/dev/null
+[ -f "$EXP" ] && ok "suki export writes a tarball" || bad "suki export no tarball"
+NEWHOME="$(mktemp -d)"
+SUKI_HOME="$NEWHOME" PY import "$EXP" >/dev/null
+[ -f "$NEWHOME/topics/python/curriculum.json" ] && ok "suki import restores topics" || bad "suki import missing topics"
+SUKI_HOME="$NEWHOME" PY import "$EXP" >/tmp/qimp.out 2>&1
+grep -q 'skipped' /tmp/qimp.out && ok "suki import skips existing" || bad "suki import clobbered existing"
+
+echo "10. book renders to tex without a pdf engine needed (--tex-only)"
 SUKI_HOME="$SUKI_HOME" PY book python --tex-only >/tmp/qb.out 2>&1
 book="$SUKI_HOME/topics/python/book/book.tex"
 [ -f "$book" ] && ok "book.tex produced ($book)" || { bad "no book.tex"; cat /tmp/qb.out; }
 grep -q 'Tier 1' "$book" && ok "book.tex contains Tier 1" || bad "book.tex missing Tier 1"
+
+echo "11. book --preview renders a single tier"
+SUKI_HOME="$SUKI_HOME" PY book python --tex-only --preview 1 >/tmp/qbp.out 2>&1
+grep -q 'Tier 1' "$book" && ok "book --preview renders tier 1" || { bad "book --preview failed"; cat /tmp/qbp.out; }
 
 echo
 if [ "$FAIL" = "1" ]; then echo "RESULT: FAIL"; exit 1; fi

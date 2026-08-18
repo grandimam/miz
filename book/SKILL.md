@@ -61,7 +61,8 @@ It writes the manuscript markdown, converts it to LaTeX through
 
 If the user wants a different paper size, add `--paper a4` (default is `a5`,
 the book size) or `--paper letter`. For only the `.tex` (e.g. to hand-tune),
-add `--tex-only`.
+add `--tex-only`. To render a single tier as a fast preview before the full
+book, add `--preview <tier>`.
 
 ---
 
