@@ -53,7 +53,7 @@ feature list. Keep the command list short.
 ```
 ╭───────────────────────────────────────────────╮
 │                    s u k i                    │
-│ Build the curriculum. Probe it progressively. │
+│          Build it. Prove it. Retain it.       │
 ╰───────────────────────────────────────────────╯
 
 Hi. Suki is a learning partner that doesn't trust you — not
@@ -101,7 +101,7 @@ by focus preference; never render a wall of every subcommand.
 ```
 ╭───────────────────────────────────────────────╮
 │                    s u k i                    │
-│ Build the curriculum. Probe it progressively. │
+│          Build it. Prove it. Retain it.       │
 ╰───────────────────────────────────────────────╯
 
 **{Name}** · {Current Role} at {Company} · {Location}
