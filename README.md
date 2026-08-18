@@ -19,8 +19,6 @@ what you're weak at and brings it back before it fades.
 
 **🔒 Local-first** · **🛡️ Private by default** · **🧩 3 steps, one command** · **🐍 Python 3 + your agent**
 
----
-
 ## The loop: curriculum → probe → book
 
 ```
@@ -44,8 +42,6 @@ what you're weak at and brings it back before it fades.
 
 Work compounds: each step writes an artifact to `~/.suki/topics/<slug>/`
 that the next step reads. Probe again next week, and the book reflects it.
-
----
 
 ## 📐 Build a curriculum
 
@@ -71,8 +67,6 @@ field, then writes it as chapter-by-chapter markdown plus a
 | `/suki curriculum <topic>` | Design a definitive learning path: chapters, order, mastery checks |
 | `/suki learn <draft>` | Review a chapter draft from a serious learner's perspective |
 
----
-
 ## 🔬 Probe your understanding
 
 ```
@@ -95,8 +89,6 @@ everything is recorded as an artifact that compounds.
 |---------|--------------|
 | `/suki probe <topic> [ch]` | Build + verify understanding chapter by chapter; repair cracks; spaced repetition |
 
----
-
 ## 📖 Create a book
 
 ```
@@ -114,8 +106,6 @@ material other learners can use, and the proof of what you actually hold.
 | Command | What it does |
 |---------|--------------|
 | `/suki book <topic>` | Render the topic as a publication-quality teaching book |
-
----
 
 ## See it in action
 
@@ -157,8 +147,6 @@ That's it. Restart your agent, then:
 /suki book python          # publish what you mastered
 ```
 
----
-
 ## 🧠 The skills
 
 | Skill | Role |
@@ -168,8 +156,6 @@ That's it. Restart your agent, then:
 | `learn` | Review material from a learner's perspective |
 | `probe` | Build + verify understanding, repair cracks, spaced repetition |
 | `book` | Render a topic as a teaching book |
-
----
 
 ## 🗂️ State
 
@@ -188,8 +174,6 @@ The `suki` CLI manages the stack:
 - `suki topics` — list topics
 - `suki status [topic]` — progress + spaced-repetition due status
 - `suki book <topic>` — render a topic as a book
-
----
 
 ## 📦 Install
 
@@ -239,7 +223,3 @@ the LLM/harness and web fetches.
 3. **Learn for keeps**: Spaced repetition over cramming
 4. **Everything is an artifact**: Named files, compounded across sessions
 5. **Privacy by default**: Your data never leaves your machine
-
----
-
-**Suki: Build expertise. Validate it. Own it.**
