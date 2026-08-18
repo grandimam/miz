@@ -1,22 +1,17 @@
 ---
 name: suki
 description: |
-  Suki - a stack for building and validating expertise. The /suki command is the
-  single entry point and router. Subcommands: /suki career ... (profile,
-  job-fit analysis, interview prep, gap closing, tracking), /suki curriculum
-  <topic> to design a learning path, /suki learn <draft> to review material,
-  /suki probe <topic> to build + verify understanding, /suki book <topic> to
-  publish a teaching book, and /suki resume to audit, improve, or tailor the
-  resume. All state lives under ~/.suki/. Use /suki with no subcommand for the
+  Suki - a stack for building and validating your expertise. The /suki command is a
+  single entry point. Subcommands: /suki curriculum <topic> to design a learning path, 
+  /suki learn <draft> to review material, /suki probe <topic> to build + verify understanding, 
+  /suki book <topic> to publish a teaching book, and /suki resume to audit, improve, or 
+  tailor the resume. All state lives under ~/.suki/. Use /suki with no subcommand for the
   status dashboard.
 ---
 
 # Suki
 
-> Build expertise. Validate it. Own it.
-
-The single entry point and router for the suki stack: career tools plus a
-personal learning engine, all under `~/.suki/`.
+Build your own curriculum. Then prove you actually understand it. The single entry point and router for the suki stack: career tools plus a personal learning engine, all under `~/.suki/`.
 
 ## UX Guidelines
 
@@ -39,7 +34,7 @@ Show the suki home page. On EVERY invocation, first check if
 
 ```
 ╭──────────────────────────────────────────╮
-│                  s u k i                    │
+│                  s u k i                 │
 │   Build expertise. Validate it. Own it.  │
 ╰──────────────────────────────────────────╯
 

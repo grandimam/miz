@@ -9,7 +9,7 @@ description = "Build expertise. Validate it. Own it. A stack of AI-agent skills 
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
-authors = [{ name = "Gaurav Mukherjee" }]
+authors = [{ name = "Fauzan" }]
 keywords = ["learning", "career", "interview-prep", "skills", "ai-agents", "spaced-repetition"]
 classifiers = [
   "Programming Language :: Python :: 3",
