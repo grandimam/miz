@@ -1,0 +1,58 @@
+name: Bug report
+description: Something isn't working as expected
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Fill in what you can; the more context, the faster this gets fixed.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Where does the problem live?
+      options:
+        - suki CLI (src/suki)
+        - skill (home/career/curriculum/learn/probe/book/resume)
+        - install / packaging
+        - tests
+        - docs
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps to trigger it.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Python version, agent (opencode/claude/codex), and how suki was installed.
+      placeholder: |
+        - OS: macOS 14
+        - Python: 3.12
+        - Agent: opencode
+        - Installed via: pip install -e .
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      description: Make sure your report contains no personal learning or career data.
+      options:
+        - label: I have not included any user data from ~/.suki/
+          required: true

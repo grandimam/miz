@@ -1,0 +1,38 @@
+name: Feature request
+description: An idea for a new skill, command, or behavior
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe the user need, not just the feature. What's painful or missing today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: How would you imagine this working? Command names, skill behaviors, artifacts written.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Where should this live?
+      options:
+        - New skill
+        - New command / CLI
+        - Existing skill behavior
+        - Docs
+        - Packaging / install
+  - type: checkboxes
+    id: guardrails
+    attributes:
+      label: Guardrails
+      description: Suki's principles apply to new features too.
+      options:
+        - label: Stays local-first and private (data under ~/.suki/)
+        - label: Preserves the accumulate-don't-overwrite chain of artifacts
